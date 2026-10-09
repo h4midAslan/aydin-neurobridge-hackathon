@@ -11,7 +11,7 @@ captions — it's a resolution console / call console. "Chatbot" is a word we
 only use for what it's replacing.
 
 Recording notes: single take through the live app if possible. Pre-load the
-app with the default mock bill (balance 4.72 AZN; "Sindibad Premium Content"
+app with the default mock bill (balance 4.72 AZN; "PlayZone Plus"
 0.35 AZN/gün — active; "Əlavə 2GB internet paketi" 2.0 AZN/ay — active)
 before hitting record. The call console UI should be visible throughout: a
 persistent corner badge reading "AiCell-in bu tip müraciətlərdə həll
@@ -53,7 +53,7 @@ screen and nothing has been proposed as "the one" yet — so the exchange
 below is structurally identical to the validated zero-context case in
 `docs/testing-results.md` (case 10: "Abunəliyi ləğv et" as a first message),
 which correctly triggered disambiguation. This replaces the earlier draft of
-this beat, which had the opener name Sindibad directly and would not have
+this beat, which had the opener name PlayZone directly and would not have
 triggered a real "which one?" response (see case 2 in the same file for why).
 
 **Type/speak into the console (AZ):**
@@ -68,9 +68,9 @@ triggered by a keyword.
 ## 0:50–1:10 — Resolution, live
 
 **Reply (AZ):**
-> Sindibad olanı.
+> PlayZone olanı.
 
-Clario calls `cancel_subscription` and confirms ("Sindibad Premium Content
+Clario calls `cancel_subscription` and confirms ("PlayZone Plus
 ləğv edildi. Artıq gündə 0.35 AZN alınmayacaq."). **Camera must catch two
 things updating live at once:** the sidebar row flips to "✓ Ləğv edilib",
 and the call-status line flips from pending to **"✅ ZƏNG: HƏLL EDİLDİ"**

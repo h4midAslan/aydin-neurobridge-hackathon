@@ -63,16 +63,16 @@ export default function PaketlerPage() {
     : null;
 
   return (
-    <div className="min-h-screen bg-black text-white [font-family:var(--font-geist-sans)]">
-      <header className="border-b border-[#2f3336] px-6 py-5 flex items-center justify-between flex-wrap gap-3">
+    <div className="min-h-screen bg-[#F4F0FB] text-[#241E33] [font-family:var(--font-geist-sans)]">
+      <header className="border-b border-[#E2D6F5] px-6 py-5 flex items-center justify-between flex-wrap gap-3">
         <Link href="/" className="text-xl font-extrabold tracking-tight">
           Clario
         </Link>
         <div className="flex items-center gap-3">
-          <span className="text-sm text-[#8a9096] hidden sm:inline">Başqa probleminiz var?</span>
+          <span className="text-sm text-[#6E6680] hidden sm:inline">Başqa probleminiz var?</span>
           <Link
             href="/console"
-            className="rounded-full bg-[#f5b73a] px-5 py-2.5 text-sm font-bold text-black transition hover:bg-[#ffc757]"
+            className="rounded-full bg-white border-2 border-[#5C2D91] px-5 py-2.5 text-sm font-bold text-[#5C2D91] transition hover:bg-[#F0E8FB]"
           >
             Canlı söhbətə qoşulun →
           </Link>
@@ -82,8 +82,8 @@ export default function PaketlerPage() {
       <main className="max-w-5xl mx-auto px-6 py-12">
         {recommended && existing && (
           <section className="mb-16">
-            <div className="rounded-2xl border border-[#f5b73a]/60 bg-[#f5b73a]/5 p-6 sm:p-8">
-              <div className="text-xs font-bold tracking-wide text-[#f5b73a] mb-2">
+            <div className="rounded-2xl border border-[#5C2D91]/40 bg-white p-6 sm:p-8">
+              <div className="text-xs font-bold tracking-wide text-[#5C2D91] mb-2">
                 SİZƏ TÖVSİYƏ
               </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
@@ -93,21 +93,21 @@ export default function PaketlerPage() {
                 <span className="text-4xl font-extrabold tracking-tight">
                   {recommended.package.totalGb} GB
                 </span>
-                <span className="text-2xl font-bold text-[#f5b73a]">
+                <span className="text-2xl font-bold text-[#5C2D91]">
                   {recommended.package.priceAzn} AZN
                 </span>
               </div>
 
-              <ul className="mt-6 flex flex-col gap-2.5 text-sm text-[#e7e9ea]">
+              <ul className="mt-6 flex flex-col gap-2.5 text-sm text-[#241E33]">
                 {dominantBucket && (
                   <li className="flex items-start gap-2">
-                    <span className="text-[#f5b73a] mt-0.5">✓</span>
+                    <span className="text-[#5C2D91] mt-0.5">✓</span>
                     {dominantBucket[1]} GB xüsusi olaraq {(BUCKET_AZ[dominantBucket[0]] ?? dominantBucket[0]).toLowerCase()}{" "}
                     üçün ayrılıb.
                   </li>
                 )}
                 <li className="flex items-start gap-2">
-                  <span className="text-[#f5b73a] mt-0.5">✓</span>
+                  <span className="text-[#5C2D91] mt-0.5">✓</span>
                   Mövcud ən ucuz oxşar tarif {existing.priceAzn} AZN-dir
                   {savings > 0 ? (
                     <> — bu paketlə {savings} AZN qənaət edirsiniz.</>
@@ -119,7 +119,7 @@ export default function PaketlerPage() {
 
               <Link
                 href="/console"
-                className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#f5b73a] px-5 py-2.5 text-sm font-bold text-black transition hover:bg-[#ffc757]"
+                className="mt-6 inline-flex items-center gap-2 rounded-full bg-white border-2 border-[#5C2D91] px-5 py-2.5 text-sm font-bold text-[#5C2D91] transition hover:bg-[#F0E8FB]"
               >
                 Bu tarifə keçmək istəyirəm →
               </Link>
@@ -128,7 +128,7 @@ export default function PaketlerPage() {
         )}
 
         <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">Bütün tariflər</h1>
-        <p className="mt-3 text-[#8a9096] max-w-xl">
+        <p className="mt-3 text-[#6E6680] max-w-xl">
           30 fərdiləşdirilmiş paket, 10 istifadə profilinə görə qruplaşdırılıb. Hər profil üçün 3
           səviyyə: yüngül, orta, geniş istifadə.
         </p>
@@ -141,22 +141,22 @@ export default function PaketlerPage() {
                 {tiers.map((pkg) => (
                   <div
                     key={pkg.tier}
-                    className="rounded-xl border border-[#2f3336] p-5 flex flex-col gap-3 hover:border-[#536471] transition-colors"
+                    className="rounded-xl border border-[#E2D6F5] bg-white p-5 flex flex-col gap-3 hover:border-[#5C2D91] transition-colors"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold tracking-wide text-[#8a9096]">
+                      <span className="text-xs font-bold tracking-wide text-[#6E6680]">
                         {TIER_LABEL[pkg.tier]}
                       </span>
-                      <span className="text-xs text-[#536471]">{pkg.tier}</span>
+                      <span className="text-xs text-[#9C93AD]">{pkg.tier}</span>
                     </div>
                     <div className="text-2xl font-extrabold tracking-tight">
                       {Math.round(pkg.total_gb)} GB
                     </div>
-                    <div className="text-lg font-bold text-[#f5b73a]">
+                    <div className="text-lg font-bold text-[#5C2D91]">
                       {Math.round(pkg.price_azn)} AZN
                     </div>
                     {Object.keys(pkg.buckets_gb).length > 0 && (
-                      <ul className="mt-1 flex flex-col gap-1 text-xs text-[#8a9096]">
+                      <ul className="mt-1 flex flex-col gap-1 text-xs text-[#6E6680]">
                         {Object.entries(pkg.buckets_gb).map(([k, v]) => (
                           <li key={k}>
                             {BUCKET_AZ[k] ?? k}: {Math.round(v)} GB

@@ -12,7 +12,7 @@ Track: AI Enterprise Solutions · Team whoami · NeuroBridge.SI Baku 2026
 
 ### Slide 2 — Value for the user (25 pts)
 - Who: subscribers of Azerbaijani telecom/subscription-based services who don't check itemized deductions — illustrated here against Azercell's own published customer base and complaint patterns.
-- What breaks today: unwanted recurring third-party charges (e.g. "Sindibad"-style, ~0.35 AZN/day) silently drain balance; the only fix today is calling support and waiting.
+- What breaks today: unwanted recurring third-party charges (e.g. "PlayZone"-style, ~0.35 AZN/day) silently drain balance; the only fix today is calling support and waiting.
 - The outcome Clario delivers: the charge is flagged *and cancelled* end to end, in Azerbaijani, with no human handoff — and Clario raises it before the customer even has to ask.
 
 ---

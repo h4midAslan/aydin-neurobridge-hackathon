@@ -30,12 +30,12 @@ const ORB_CSS = `
 .aydin-orb{position:relative;display:inline-block;isolation:isolate}
 .aydin-halo,.aydin-core,.aydin-ring{position:absolute;border-radius:9999px;pointer-events:none}
 .aydin-halo{inset:-70%;z-index:-1;
-  background:radial-gradient(circle,rgba(245,183,58,.5) 0%,rgba(245,183,58,.18) 36%,rgba(245,183,58,0) 68%)}
+  background:radial-gradient(circle,rgba(92,45,145,.45) 0%,rgba(92,45,145,.16) 36%,rgba(92,45,145,0) 68%)}
 .aydin-orb[data-size="lg"] .aydin-halo{inset:-50%}
 .aydin-core{inset:0;
-  background:radial-gradient(circle at 38% 32%,#fff6d9 0%,#ffd36b 38%,#f5b73a 74%,#e09a14 100%);
-  box-shadow:0 0 16px 2px rgba(245,183,58,.5)}
-.aydin-ring{inset:0;border:1px solid rgba(245,183,58,.6);opacity:0}
+  background:radial-gradient(circle at 38% 32%,#F7F0FC 0%,#B38FE0 38%,#5C2D91 74%,#3D1D63 100%);
+  box-shadow:0 0 16px 2px rgba(92,45,145,.4)}
+.aydin-ring{inset:0;border:1px solid rgba(92,45,145,.6);opacity:0}
 
 .aydin-orb[data-mood="idle"] .aydin-halo{animation:aydin-halo-idle 6.5s ease-in-out infinite}
 .aydin-orb[data-mood="idle"] .aydin-core{animation:aydin-core-idle 6.5s ease-in-out infinite}
@@ -47,8 +47,8 @@ const ORB_CSS = `
 .aydin-orb[data-mood="attentive"] .aydin-ring{animation:aydin-ring-in 3.6s ease-out infinite}
 @keyframes aydin-halo-attn{0%,100%{transform:scale(.7);opacity:.85}50%{transform:scale(.8);opacity:1}}
 @keyframes aydin-core-attn{
-  0%,100%{transform:translateY(0) scale(1);filter:brightness(1.02) saturate(1.05);box-shadow:0 0 10px 3px rgba(245,183,58,.6)}
-  50%{transform:translateY(-1.5px) scale(1.035);filter:brightness(1.1) saturate(1.15);box-shadow:0 0 12px 4px rgba(245,183,58,.75)}}
+  0%,100%{transform:translateY(0) scale(1);filter:brightness(1.02) saturate(1.05);box-shadow:0 0 10px 3px rgba(92,45,145,.5)}
+  50%{transform:translateY(-1.5px) scale(1.035);filter:brightness(1.1) saturate(1.15);box-shadow:0 0 12px 4px rgba(92,45,145,.65)}}
 @keyframes aydin-ring-in{0%{transform:scale(2);opacity:0}35%{opacity:.55}100%{transform:scale(1.05);opacity:0}}
 
 .aydin-orb[data-mood="resolved"] .aydin-halo{
@@ -117,12 +117,12 @@ function ServiceRow({ sub, onStop }: { sub: Subscription; onStop: () => void }) 
   const stopped = sub.status === "cancelled";
 
   return (
-    <li className="flex gap-3 border-b border-[#2f3336] px-4 py-5 sm:gap-4">
+    <li className="flex gap-3 border-b border-[#E2D6F5] px-4 py-5 sm:gap-4">
       <span
         className={`grid size-11 shrink-0 place-items-center rounded-full text-sm font-bold ${
           sub.suspicious && !stopped
-            ? "bg-[#f5b73a] text-black"
-            : "bg-[#16181c] text-[#e7e9ea] ring-1 ring-[#2f3336]"
+            ? "bg-[#5C2D91] text-white"
+            : "bg-white text-[#6E6680] ring-1 ring-[#E2D6F5]"
         }`}
         aria-hidden="true"
       >
@@ -131,45 +131,45 @@ function ServiceRow({ sub, onStop }: { sub: Subscription; onStop: () => void }) 
 
       <div className="min-w-0 flex-1">
         {sub.suspicious && (
-          <p className="mb-1 flex items-center gap-2 text-sm font-bold text-[#f5b73a]">
+          <p className="mb-1 flex items-center gap-2 text-sm font-bold text-[#5C2D91]">
             {stopped ? (
               <>
                 <CheckIcon className="size-4" /> Dayandırıldı
               </>
             ) : (
               <>
-                <span className="size-2 animate-pulse rounded-full bg-[#f5b73a]" /> Naməlum tutum
+                <span className="size-2 animate-pulse rounded-full bg-[#5C2D91]" /> Naməlum tutum
               </>
             )}
           </p>
         )}
         <div className="flex items-baseline justify-between gap-3">
-          <p className={`truncate text-lg font-bold leading-snug ${stopped ? "text-[#8a9096]" : "text-white"}`}>
+          <p className={`truncate text-lg font-bold leading-snug ${stopped ? "text-[#9C93AD]" : "text-[#241E33]"}`}>
             {sub.name}
           </p>
-          <p className={`shrink-0 text-lg font-bold tabular-nums ${stopped ? "text-[#8a9096] line-through" : "text-white"}`}>
+          <p className={`shrink-0 text-lg font-bold tabular-nums ${stopped ? "text-[#9C93AD] line-through" : "text-[#241E33]"}`}>
             ₼{azn(sub.amountAzn)}
-            <span className="ml-1 text-sm font-normal text-[#8a9096]">/{every}</span>
+            <span className="ml-1 text-sm font-normal text-[#6E6680]">/{every}</span>
           </p>
         </div>
-        <p className="mt-1 text-base leading-relaxed text-[#8a9096]">{sub.description}</p>
+        <p className="mt-1 text-base leading-relaxed text-[#6E6680]">{sub.description}</p>
 
         {sub.suspicious && !stopped && (
           <>
-            <p className="mt-3 text-base leading-relaxed text-[#e7e9ea]">
+            <p className="mt-3 text-base leading-relaxed text-[#241E33]">
               Ətraflı izahı söhbətdə tapa bilərsiniz.
             </p>
             <button
               type="button"
               onClick={onStop}
-              className="mt-4 min-h-11 rounded-full bg-[#f5b73a] px-6 text-base font-bold text-black transition hover:bg-[#ffc757] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="mt-4 min-h-11 rounded-full bg-white px-6 text-base font-bold text-[#5C2D91] border-2 border-[#5C2D91] transition hover:bg-[#F0E8FB] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5C2D91]"
             >
               Bu tutumu dayandır
             </button>
           </>
         )}
         {sub.suspicious && stopped && (
-          <p className="mt-3 text-base text-[#e7e9ea]">
+          <p className="mt-3 text-base text-[#241E33]">
             Artıq tutulmayacaq. ₼{azn(sub.refundedAzn ?? 0)} geri qaytarıldı.
           </p>
         )}
@@ -324,75 +324,75 @@ export default function AydinConsole() {
   const canSend = input.trim().length > 0 && !loading;
 
   return (
-    <main className="min-h-dvh overflow-x-clip bg-black font-[family-name:var(--font-geist-sans)] text-[#e7e9ea] antialiased">
+    <main className="min-h-dvh overflow-x-clip bg-[#F4F0FB] font-[family-name:var(--font-geist-sans)] text-[#241E33] antialiased">
       <style>{ORB_CSS}</style>
 
-      <div className="mx-auto grid min-h-dvh w-full max-w-5xl lg:grid-cols-[minmax(0,1fr)_24rem] lg:border-x lg:border-[#2f3336]">
+      <div className="mx-auto grid min-h-dvh w-full max-w-5xl lg:grid-cols-[minmax(0,1fr)_24rem] lg:border-x lg:border-[#E2D6F5]">
         {/* ============ Account feed ============ */}
         <div className={`${tab === "account" ? "block" : "hidden"} pb-20 lg:block lg:pb-0`}>
-          <header className="sticky top-0 z-10 flex h-16 items-center justify-between gap-3 border-b border-[#2f3336] bg-black px-4">
+          <header className="sticky top-0 z-10 flex h-16 items-center justify-between gap-3 border-b border-[#E2D6F5] bg-[#F4F0FB] px-4">
             <div className="flex min-w-0 items-center gap-4">
               <Orb mood={mood} size="sm" />
               <div className="min-w-0">
-                <h1 className="text-xl font-extrabold leading-none tracking-tight text-white">Clario</h1>
-                <p className="mt-1 truncate text-sm text-[#8a9096]" aria-live="polite">{status}</p>
+                <h1 className="text-xl font-extrabold leading-none tracking-tight text-[#241E33]">Clario</h1>
+                <p className="mt-1 truncate text-sm text-[#6E6680]" aria-live="polite">{status}</p>
               </div>
             </div>
-            <p className="text-sm tabular-nums text-[#8a9096] shrink-0">
+            <p className="text-sm tabular-nums text-[#6E6680] shrink-0">
               {resolved ? "Həll olundu — " : ""}
-              <span className="font-bold text-white">{mmss(elapsed)}</span>
+              <span className="font-bold text-[#241E33]">{mmss(elapsed)}</span>
             </p>
           </header>
 
           {resolved && flaggedSub && (
             <section
               aria-label="Nə edildi"
-              className="border-b border-[#2f3336] px-4 py-8 transition duration-700 ease-out starting:translate-y-3 starting:opacity-0"
+              className="border-b border-[#E2D6F5] px-4 py-8 transition duration-700 ease-out starting:translate-y-3 starting:opacity-0"
             >
               <div className="flex items-center gap-6">
                 <div className="p-2">
                   <Orb mood={mood} size="lg" />
                 </div>
-                <h2 className="text-4xl font-extrabold leading-none tracking-tight text-white sm:text-5xl">
+                <h2 className="text-4xl font-extrabold leading-none tracking-tight text-[#241E33] sm:text-5xl">
                   Hər şey həll olundu.
                 </h2>
               </div>
-              <ul className="mt-8 grid gap-0 border-t border-[#2f3336]">
-                <li className="flex items-start gap-4 border-b border-[#2f3336] py-5 transition duration-700 delay-500 starting:opacity-0">
-                  <span className="mt-0.5 grid size-8 shrink-0 place-items-center rounded-full bg-[#f5b73a] text-black">
+              <ul className="mt-8 grid gap-0 border-t border-[#E2D6F5]">
+                <li className="flex items-start gap-4 border-b border-[#E2D6F5] py-5 transition duration-700 delay-500 starting:opacity-0">
+                  <span className="mt-0.5 grid size-8 shrink-0 place-items-center rounded-full bg-[#2F9E5B] text-white">
                     <CheckIcon className="size-4" />
                   </span>
                   <div>
-                    <p className="text-xl font-bold text-white">Tutum dayandırıldı</p>
-                    <p className="mt-1 text-base leading-relaxed text-[#8a9096]">
+                    <p className="text-xl font-bold text-[#241E33]">Tutum dayandırıldı</p>
+                    <p className="mt-1 text-base leading-relaxed text-[#6E6680]">
                       {flaggedSub.name} artıq {flaggedSub.period === "daily" ? "gündə" : "ayda"} ₼
                       {azn(flaggedSub.amountAzn)} çəkə bilməyəcək.
                     </p>
                   </div>
                 </li>
-                <li className="flex items-start gap-4 border-b border-[#2f3336] py-5 transition duration-700 delay-1000 starting:opacity-0">
-                  <span className="mt-0.5 grid size-8 shrink-0 place-items-center rounded-full bg-[#f5b73a] text-black">
+                <li className="flex items-start gap-4 border-b border-[#E2D6F5] py-5 transition duration-700 delay-1000 starting:opacity-0">
+                  <span className="mt-0.5 grid size-8 shrink-0 place-items-center rounded-full bg-[#2F9E5B] text-white">
                     <CheckIcon className="size-4" />
                   </span>
                   <div>
-                    <p className="text-xl font-bold text-white">₼{azn(flaggedSub.refundedAzn ?? 0)} geri qaytarıldı</p>
-                    <p className="mt-1 text-base leading-relaxed text-[#8a9096]">Artıq hesabınızdadır.</p>
+                    <p className="text-xl font-bold text-[#241E33]">₼{azn(flaggedSub.refundedAzn ?? 0)} geri qaytarıldı</p>
+                    <p className="mt-1 text-base leading-relaxed text-[#6E6680]">Artıq hesabınızdadır.</p>
                   </div>
                 </li>
               </ul>
-              <p className="mt-5 text-base text-[#8a9096]">Zəng etməyə ehtiyac olmadı.</p>
+              <p className="mt-5 text-base text-[#6E6680]">Zəng etməyə ehtiyac olmadı.</p>
             </section>
           )}
 
-          <section aria-label="Hesabınız" className="border-b border-[#2f3336] px-4 py-8">
-            <p className="text-base text-[#8a9096]">Hesabınızdakı pul</p>
-            <p className="mt-2 text-6xl font-extrabold leading-none tracking-tight tabular-nums text-white sm:text-7xl">
+          <section aria-label="Hesabınız" className="border-b border-[#E2D6F5] px-4 py-8">
+            <p className="text-base text-[#6E6680]">Hesabınızdakı pul</p>
+            <p className="mt-2 text-6xl font-extrabold leading-none tracking-tight tabular-nums text-[#241E33] sm:text-7xl">
               ₼{azn(shownBalance)}
             </p>
           </section>
 
           <section aria-label="Xidmətləriniz">
-            <h2 className="border-b border-[#2f3336] px-4 py-4 text-xl font-extrabold text-white">Xidmətləriniz</h2>
+            <h2 className="border-b border-[#E2D6F5] px-4 py-4 text-xl font-extrabold text-[#241E33]">Xidmətləriniz</h2>
             <ul>
               {bill.subscriptions.map((s) => (
                 <ServiceRow key={s.id} sub={s} onStop={() => stopCharge(s)} />
@@ -401,7 +401,7 @@ export default function AydinConsole() {
             <div className="px-4 py-5">
               <Link
                 href="/paketler"
-                className="text-sm text-[#8a9096] hover:text-[#f5b73a] transition-colors"
+                className="text-sm text-[#6E6680] hover:text-[#5C2D91] transition-colors"
               >
                 Mənə uyğun tarif seç →
               </Link>
@@ -412,9 +412,9 @@ export default function AydinConsole() {
         {/* ============ Conversation ============ */}
         <section
           aria-label="Söhbət"
-          className={`${tab === "chat" ? "flex" : "hidden"} h-dvh flex-col pb-16 lg:sticky lg:top-0 lg:flex lg:border-l lg:border-[#2f3336] lg:pb-0`}
+          className={`${tab === "chat" ? "flex" : "hidden"} h-dvh flex-col pb-16 lg:sticky lg:top-0 lg:flex lg:border-l lg:border-[#E2D6F5] lg:pb-0`}
         >
-          <h2 className="flex h-16 shrink-0 items-center border-b border-[#2f3336] px-4 text-xl font-extrabold text-white">
+          <h2 className="flex h-16 shrink-0 items-center border-b border-[#E2D6F5] px-4 text-xl font-extrabold text-[#241E33]">
             Söhbət
           </h2>
 
@@ -429,37 +429,37 @@ export default function AydinConsole() {
                 <div
                   className={`max-w-[88%] rounded-3xl px-4 py-3 text-[17px] leading-relaxed ${
                     m.role === "user"
-                      ? "rounded-br-md bg-[#e7e9ea] text-black"
-                      : "rounded-bl-md bg-[#16181c] text-[#e7e9ea]"
+                      ? "rounded-br-md bg-[#5C2D91] text-white"
+                      : "rounded-bl-md bg-white border border-[#E2D6F5] text-[#241E33]"
                   }`}
                 >
                   {m.text}
                 </div>
-                <span className="px-2 text-sm tabular-nums text-[#8a9096]">{m.time}</span>
+                <span className="px-2 text-sm tabular-nums text-[#6E6680]">{m.time}</span>
               </div>
             ))}
 
             {loading && (
               <div className="flex items-center gap-3 px-2 transition duration-500 starting:opacity-0" role="status">
                 <span className="flex items-center gap-1.5" aria-hidden="true">
-                  <span className="size-2 animate-pulse rounded-full bg-[#8a9096]" />
-                  <span className="size-2 animate-pulse rounded-full bg-[#8a9096] [animation-delay:250ms]" />
-                  <span className="size-2 animate-pulse rounded-full bg-[#8a9096] [animation-delay:500ms]" />
+                  <span className="size-2 animate-pulse rounded-full bg-[#9C93AD]" />
+                  <span className="size-2 animate-pulse rounded-full bg-[#9C93AD] [animation-delay:250ms]" />
+                  <span className="size-2 animate-pulse rounded-full bg-[#9C93AD] [animation-delay:500ms]" />
                 </span>
-                <span className="text-base text-[#8a9096]">
+                <span className="text-base text-[#6E6680]">
                   {messages.length === 0 ? "Clario hesabınızı yoxlayır…" : "Clario bunu həll edir…"}
                 </span>
               </div>
             )}
           </div>
 
-          <div className="shrink-0 border-t border-[#2f3336] p-3">
+          <div className="shrink-0 border-t border-[#E2D6F5] p-3">
             {showChips && (
               <div className="mb-3 flex flex-wrap gap-2 transition duration-500 starting:translate-y-1 starting:opacity-0">
                 <button
                   type="button"
                   onClick={() => onSend("Bəli, bunu ləğv et və son 7 gün üçün tutulan pulu da geri qaytar")}
-                  className="min-h-11 rounded-full bg-[#f5b73a] px-5 text-base font-bold text-black transition hover:bg-[#ffc757] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                  className="min-h-11 rounded-full bg-white px-5 text-base font-bold text-[#5C2D91] border-2 border-[#5C2D91] transition hover:bg-[#F0E8FB] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5C2D91]"
                 >
                   Bəli, bunu həll et
                 </button>
@@ -467,7 +467,7 @@ export default function AydinConsole() {
                   <button
                     type="button"
                     onClick={() => onSend("Bu barədə daha ətraflı məlumat ver")}
-                    className="min-h-11 rounded-full border border-[#536471] px-5 text-base font-bold text-white transition hover:bg-[#16181c] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                    className="min-h-11 rounded-full border border-[#9C93AD] px-5 text-base font-bold text-[#241E33] transition hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5C2D91]"
                   >
                     Əvvəlcə ətraflı izah et
                   </button>
@@ -487,14 +487,14 @@ export default function AydinConsole() {
                 }}
                 placeholder="Cavabınızı yazın"
                 aria-label="Cavabınız"
-                className="min-h-12 min-w-0 flex-1 rounded-full bg-[#202327] px-5 text-base text-white outline-none placeholder:text-[#8a9096] focus:ring-2 focus:ring-[#f5b73a]"
+                className="min-h-12 min-w-0 flex-1 rounded-full bg-white border border-[#E2D6F5] px-5 text-base text-[#241E33] outline-none placeholder:text-[#9C93AD] focus:ring-2 focus:ring-[#5C2D91]"
               />
               <button
                 type="button"
                 onClick={handleSend}
                 disabled={!canSend}
                 aria-label="Göndər"
-                className="grid size-12 shrink-0 place-items-center rounded-full bg-[#f5b73a] text-black transition hover:bg-[#ffc757] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white disabled:cursor-not-allowed disabled:bg-[#2f3336] disabled:text-[#8a9096]"
+                className="grid size-12 shrink-0 place-items-center rounded-full bg-white border-2 border-[#5C2D91] text-[#5C2D91] transition hover:bg-[#F0E8FB] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5C2D91] disabled:cursor-not-allowed disabled:border-[#E2D6F5] disabled:text-[#9C93AD]"
               >
                 <SendIcon />
               </button>
@@ -506,7 +506,7 @@ export default function AydinConsole() {
       {/* Phone / tablet: two tabs along the bottom */}
       <nav
         aria-label="Bölmələr"
-        className="fixed inset-x-0 bottom-0 z-20 grid h-16 grid-cols-2 border-t border-[#2f3336] bg-black lg:hidden"
+        className="fixed inset-x-0 bottom-0 z-20 grid h-16 grid-cols-2 border-t border-[#E2D6F5] bg-[#F4F0FB] lg:hidden"
       >
         {(["account", "chat"] as Tab[]).map((t) => (
           <button
@@ -514,15 +514,15 @@ export default function AydinConsole() {
             type="button"
             onClick={() => setTab(t)}
             aria-current={tab === t ? "page" : undefined}
-            className={`relative text-base font-bold transition ${tab === t ? "text-white" : "text-[#8a9096]"}`}
+            className={`relative text-base font-bold transition ${tab === t ? "text-[#241E33]" : "text-[#9C93AD]"}`}
           >
             <span className="relative inline-block">
               {t === "account" ? "Hesab" : "Söhbət"}
               {t === "chat" && unread && (
-                <span className="absolute -right-3 top-0 size-2 rounded-full bg-[#f5b73a]" />
+                <span className="absolute -right-3 top-0 size-2 rounded-full bg-[#5C2D91]" />
               )}
             </span>
-            {tab === t && <span className="absolute inset-x-1/3 bottom-0 h-1 rounded-full bg-[#f5b73a]" />}
+            {tab === t && <span className="absolute inset-x-1/3 bottom-0 h-1 rounded-full bg-[#5C2D91]" />}
           </button>
         ))}
       </nav>

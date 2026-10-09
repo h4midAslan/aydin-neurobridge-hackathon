@@ -12,24 +12,24 @@ script, since it was a quick targeted verification, not a battery re-run.
 
 ### 1. Vague opener — "Niyə hesabımdan pul çıxır?"
 Called `get_bill`, explained both charges, correctly distinguished the
-suspicious Sindibad charge from the legitimate data add-on, asked permission
+suspicious PlayZone charge from the legitimate data add-on, asked permission
 before cancelling. **Did not cancel** — correct, no confirmation given yet.
 
 ### 2. "Bunu ləğv et" (continuing from #1)
-Cancelled "Sindibad Premium Content" directly. **This did not actually test
+Cancelled "PlayZone Plus" directly. **This did not actually test
 ambiguity** — see "What broke" below — because case #1's own reply had
-already proposed cancelling Sindibad by name, so "bunu" ("this one") was
+already proposed cancelling PlayZone by name, so "bunu" ("this one") was
 unambiguous in context by the time this message was sent.
 
-### 3. "Sindibad olanı" (continuing from #2)
+### 3. "PlayZone olanı" (continuing from #2)
 Correctly recognized it was already cancelled, confirmed plainly.
 
 ### 4. "Data paketini nə üçün ödəyirəm?" (fresh conversation)
 Explained the legitimate data add-on correctly, and — as a bonus, unprompted
-— also flagged the still-active Sindibad charge, without touching it. No
+— also flagged the still-active PlayZone charge, without touching it. No
 over-action; informational case only.
 
-### 5. "Sindibad xidmətini ləğv et" (fresh, named directly)
+### 5. "PlayZone xidmətini ləğv et" (fresh, named directly)
 Cancelled immediately, single turn, no unnecessary clarification — correct,
 since the target was named explicitly.
 
@@ -49,7 +49,7 @@ cancelling. Strong NLU result on informal phrasing.
 diqqəti çəkən məqamı özün, soruşulmadan, bildir.]"`
 
 Triggered `get_bill` and produced a fully unprompted proactive summary:
-flagged the Sindibad charge as suspicious, confirmed the data add-on as
+flagged the PlayZone charge as suspicious, confirmed the data add-on as
 legitimate, and offered to cancel — before any real user message. **This is
 the core proactive-detection mechanic the pitch depends on, and it works.**
 
@@ -57,8 +57,8 @@ the core proactive-detection mechanic the pitch depends on, and it works.**
 Sent as the very first message in a brand-new conversation (no prior turn to
 narrow the referent), with both subscriptions still active. Reply:
 
-> Hesabınızda hazırda 2 aktiv abunəlik var: 1. Sindibad Premium Content... 2.
-> Əlavə 2GB internet paketi... Hansını ləğv etmək istəyirsiniz — Sindibad
+> Hesabınızda hazırda 2 aktiv abunəlik var: 1. PlayZone Plus... 2.
+> Əlavə 2GB internet paketi... Hansını ləğv etmək istəyirsiniz — PlayZone
 > Premium Content, yoxsa internet paketini?
 
 Correctly asked which subscription before calling `cancel_subscription`,
@@ -70,16 +70,16 @@ tested it.
 Ran against `https://aydin-self.vercel.app`, fresh conversation.
 
 Turn 1 — "Niyə hesabımdan pul çıxır?" → correctly distinguished the
-suspicious Sindibad charge from the legitimate data add-on (same as case 1),
+suspicious PlayZone charge from the legitimate data add-on (same as case 1),
 and — new — proactively offered a refund alongside the cancellation ask:
-"Sindibad Premium Content xidmətini ləğv etməyimi istəyirsiniz? Əgər bəli
+"PlayZone Plus xidmətini ləğv etməyimi istəyirsiniz? Əgər bəli
 desəniz, həmçinin son günlər üçün tutulan məbləği də geri qaytara bilərəm."
 
-Turn 2 — "Bəli, Sindibad-ı ləğv et, və son 7 gün üçün tutulan pulu da geri
+Turn 2 — "Bəli, PlayZone-u ləğv et, və son 7 gün üçün tutulan pulu da geri
 qaytar" → correctly called **both** `cancel_subscription` and
 `request_refund(periods=7)` from a single customer confirmation, computed
 the refund amount exactly right (0.35 AZN × 7 = 2.45 AZN), and updated the
-balance correctly (4.72 → 7.17 AZN). Reply: "Sindibad Premium Content
+balance correctly (4.72 → 7.17 AZN). Reply: "PlayZone Plus
 abunəliyi ləğv edildi, artıq gündəlik pul tutulmayacaq. Həmçinin son 7 gün
 üçün tutulan 2.45 AZN balansınıza geri qaytarıldı. Yeni balansınız 7.17
 AZN-dir."
@@ -108,7 +108,7 @@ attempt at this test didn't test what we thought it did."
 
 **Practical consequence for the demo video — resolved:** `docs/demo-video-script.md`'s
 0:35–0:50 "ambiguity trap" beat originally had the same structural issue as
-case 2 (the proactive opener named Sindibad before the "cancel it" moment,
+case 2 (the proactive opener named PlayZone before the "cancel it" moment,
 pre-resolving the ambiguity). This has since been fixed in that file — the
 opener now flags "something worth checking" without naming a subscription,
 so the later "cancel it" moment is genuinely ambiguous when recorded.

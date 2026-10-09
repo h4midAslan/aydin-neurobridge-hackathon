@@ -22,15 +22,15 @@ export function initialBillState(): BillState {
     balanceAzn: 4.72,
     subscriptions: [
       {
-        id: "sub-sindibad-content",
-        name: "Sindibad Premium Content",
+        id: "sub-playzone-content",
+        name: "PlayZone Plus",
         amountAzn: 0.35,
         period: "daily",
         status: "active",
         description:
           "Üçüncü tərəf məzmun xidməti (oyun/əyləncə). Adətən bir SMS linkinə klik və ya kampaniyaya qoşulma zamanı aktivləşir.",
         suspicious: true,
-        serviceId: "SND-00142",
+        serviceId: "PLZ-00142",
       },
       {
         id: "sub-data-addon",
