@@ -1,0 +1,23 @@
+Design a landing page for "Aydın," an AI assistant that resolves telecom billing disputes for customers — it notices a suspicious recurring charge on its own, explains it in plain language, then actually cancels it and refunds past charges, visibly, live, instead of just routing the customer to a slow phone call that often doesn't even get resolved.
+
+MUST MATCH THIS EXACT EXISTING VISUAL SYSTEM — do not deviate, this is already built and approved:
+- Pure black background (#000000 / near-black), not dark gray
+- One single accent color: warm amber/gold, approximately #F5B73A — used sparingly, only for the most important elements (the primary button, key numbers, the glowing character)
+- White and light-gray text, clean bold sans-serif typography in the style of X (twitter.com) — confident, simple, high-contrast, size and weight create hierarchy rather than color or decoration
+- Thin hairline dividers (1px, low opacity) between sections rather than boxes with shadows or borders
+- No gradients, no glassmorphism, no neon colors, no red anywhere — the one exception is the glow effect on the character, described below
+- Generous whitespace and padding, calm and uncluttered despite showing real information
+
+THE BRAND CHARACTER
+A small, abstract, warm amber glowing orb or soft light-form — no face, no eyes, no limbs, personality expressed purely through the quality of its glow. This is the only place a soft radial glow/bloom effect is used anywhere in the design. Feature it prominently and large in the hero section as the visual centerpiece.
+
+LANDING PAGE SECTIONS NEEDED
+1. Hero — the "Aydın" name, the glowing orb character as a large luminous centerpiece visual, a bold headline ("Söhbəti yox, problemi bitirir" — meaning "It ends the problem, not just the conversation"), a short one-line subheading explaining what the product does, and a primary amber CTA button ("Canlı demonu sına").
+2. Problem comparison — two clean side-by-side cards contrasting "traditional support" (resolves only 17% of cases) against "Aydın" (resolves live, visibly, on the spot).
+3. How it works — three simple numbered steps as clean minimal cards: notices the charge on its own, explains it in plain language, resolves it (cancels + refunds) once confirmed.
+4. Proof — a row of three simple stat numbers: real test cases resolved, the AI model powering it, and the cost per resolved conversation.
+5. Roadmap teaser — a short horizontal timeline from "month 1" (what exists today) to "month 12" (the fuller vision: connected to real accounting/billing systems, broader fraud detection, vendor negotiation) — framed as "this is month one of a real product, not a weekend demo."
+6. Footer — minimal, just a couple of small text links.
+
+DELIVERABLE
+Produce this as a single tall JPG image showing the complete landing page design top to bottom, matching the black/amber/X-style system described above exactly and consistently across every section. Don't ask clarifying questions — make every remaining design decision yourself and produce the most polished, cohesive result you can.

@@ -1,171 +1,237 @@
 import Link from "next/link";
 
+const ORB_CSS = `
+.aydin-orb{position:relative;display:inline-block;isolation:isolate}
+.aydin-halo,.aydin-core{position:absolute;border-radius:9999px;pointer-events:none}
+.aydin-halo{inset:-70%;z-index:-1;
+  background:radial-gradient(circle,rgba(245,183,58,.5) 0%,rgba(245,183,58,.18) 36%,rgba(245,183,58,0) 68%);
+  animation:aydin-halo-idle 6.5s ease-in-out infinite}
+.aydin-core{inset:0;
+  background:radial-gradient(circle at 38% 32%,#fff6d9 0%,#ffd36b 38%,#f5b73a 74%,#e09a14 100%);
+  box-shadow:0 0 16px 2px rgba(245,183,58,.5);
+  animation:aydin-core-idle 6.5s ease-in-out infinite}
+@keyframes aydin-halo-idle{0%,100%{transform:scale(.9);opacity:.6}50%{transform:scale(1.08);opacity:1}}
+@keyframes aydin-core-idle{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+@media (prefers-reduced-motion:reduce){.aydin-halo,.aydin-core{animation-duration:14s !important}}
+`;
+
+const comparison = {
+  old: {
+    label: "Ənənəvi dəstək",
+    stat: "17%",
+    desc: "hallarda problemi həll edir.",
+    points: ["Uzun gözləmə müddəti", "Tez-tez eyni məlumatın təkrarı", "Çox vaxt yenə də həll olunmur"],
+  },
+  new: {
+    label: "Aydın",
+    stat: "Canlı, görünən,\nani həll.",
+    points: ["Süni intellekt avtomatik aşkar edir", "Problemi sadə dildə izah edir", "Təsdiqlənsə, ləğv edir və geri ödəyir"],
+  },
+};
+
 const steps = [
-  {
-    n: "01",
-    title: "AŞKARLAYIR",
-    body: "Hesabınıza baxılmasını gözləmir — tətbiq açılan kimi özü skan edir və şübhəli təkrarlanan tutumu tapır.",
-  },
-  {
-    n: "02",
-    title: "İZAH EDİR",
-    body: "Hər tutumu sadə, danışıq dilində izah edir — hansı qanunidir, hansı şübhəlidir, niyə.",
-  },
-  {
-    n: "03",
-    title: "HƏLL EDİR",
-    body: "Təsdiqdən sonra təkcə dayandırmır — keçmiş günlər üçün tutulan pulu da geri qaytarır. Söhbəti yox, problemi bitirir.",
-  },
+  { n: "1", title: "Ödənişi özü aşkar edir", body: "Aydın şübhəli, təkrarlanan ödənişi avtomatik olaraq fərq edir." },
+  { n: "2", title: "Sadə dildə izah edir", body: "Hansı xidmətə aid olduğunu aydın şəkildə sizə başa salır." },
+  { n: "3", title: "Təsdiqlənsə, həll edir", body: "İxtilafı ləğv edir və əvvəlki ödənişləri geri qaytarır." },
 ];
 
-const roadmap = [
-  { period: "1-2 AY", text: "Əsas dövrə: şübhəli tutumu aşkarla, izah et, ləğv et, geri qaytar." },
-  { period: "3-4 AY", text: "Real mühasibat/billinq sistemlərinə qoşulma — mock data deyil, canlı hesablar." },
-  { period: "5-7 AY", text: "Aşkarlamanı genişləndir: dublikat ödənişlər, qiymət dəyişiklikləri, vendor pattern analizi." },
-  { period: "8-12 AY", text: "Vendorla birbaşa danışıq, proqnozlaşdırıcı siqnal, etibar skoru." },
+const stats = [
+  { value: "8/8", label: "real test halı uğurla həll edildi" },
+  { value: "Claude Sonnet 5", label: "onun arxasındakı AI modeli" },
+  { value: "~$0.008", label: "hər həll olunmuş söhbət üçün" },
 ];
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-[#07080A] text-neutral-200">
-      {/* Nav */}
-      <header className="flex items-center justify-between px-6 py-5 border-b border-neutral-800 [font-family:var(--font-geist-mono)]">
-        <span className="font-bold tracking-wide text-white text-sm">AYDIN</span>
-        <Link
-          href="/console"
-          className="rounded border border-[#22E6A6]/60 px-4 py-2 text-xs font-semibold text-[#22E6A6] hover:bg-[#22E6A6]/10 transition-colors"
-        >
-          CANLI DEMO →
-        </Link>
-      </header>
+    <div className="min-h-screen bg-black text-white [font-family:var(--font-geist-sans)]">
+      <style>{ORB_CSS}</style>
 
-      {/* Hero */}
-      <section className="px-6 pt-16 pb-12 text-center flex flex-col items-center gap-6 max-w-3xl mx-auto">
-        <img
-          src="/aydin-glow.png"
-          alt="Aydın"
-          className="w-full max-w-md opacity-90"
-        />
-        <h1 className="text-3xl sm:text-5xl font-bold text-white leading-tight -mt-8">
-          Söhbəti yox,
-          <br />
-          <span className="text-[#F5B301]">problemi bitirir.</span>
-        </h1>
-        <p className="text-neutral-400 text-base sm:text-lg max-w-xl [font-family:var(--font-geist-mono)]">
-          Hesabınızdan niyə pul çıxdığını izah edən köməkçilər çoxdur. Aydın
-          yeganədir ki, təsdiqdən sonra məsələni özü, canlı, sona qədər həll
-          edir.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-3 mt-2">
-          <Link
-            href="/console"
-            className="rounded bg-[#22E6A6] px-6 py-3 text-sm font-bold text-black [font-family:var(--font-geist-mono)]"
-          >
-            [ CANLI DEMONU SINA ]
-          </Link>
-          <a
-            href="https://github.com/h4midAslan/aydin-neurobridge-hackathon"
-            className="rounded border border-neutral-700 px-6 py-3 text-sm font-semibold text-neutral-300 [font-family:var(--font-geist-mono)] hover:border-neutral-500 transition-colors"
-          >
-            MƏNBƏ KODU
-          </a>
-        </div>
-        <div className="text-xs text-neutral-600 [font-family:var(--font-geist-mono)]">
-          NeuroBridge.SI Baku 2026 · AI Enterprise Solutions
-        </div>
-      </section>
+      <div className="max-w-5xl mx-auto px-6">
+        {/* Hero */}
+        <header className="pt-10 pb-2">
+          <span className="text-xl font-extrabold tracking-tight">Aydın</span>
+        </header>
 
-      {/* Stat comparison */}
-      <section className="px-6 py-10 border-y border-neutral-800 bg-[#0A0C0E]">
-        <div className="max-w-3xl mx-auto flex flex-col sm:flex-row gap-4 [font-family:var(--font-geist-mono)]">
-          <div className="flex-1 rounded border border-neutral-800 p-5 text-center">
-            <div className="text-xs text-neutral-500 mb-2">ƏNƏNƏVİ DƏSTƏK BOTU</div>
-            <div className="text-4xl font-bold text-neutral-400">17%</div>
-            <div className="text-xs text-neutral-600 mt-2">hallarda sona qədər həll edir</div>
+        <section className="py-10 sm:py-16 grid sm:grid-cols-2 gap-10 items-center">
+          <div>
+            <h1 className="text-4xl sm:text-6xl font-extrabold leading-[1.05] tracking-tight">
+              Söhbəti yox,
+              <br />
+              problemi bitirir
+            </h1>
+            <p className="mt-6 text-base sm:text-lg text-[#8a9096] leading-relaxed max-w-md">
+              Aydın, telekommunikasiya üzrə ödəniş ixtilaflarını sizin üçün həll edən süni
+              intellekt assistentidir.
+            </p>
+            <Link
+              href="/console"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#f5b73a] px-6 py-3.5 text-base font-bold text-black transition hover:bg-[#ffc757]"
+            >
+              Canlı demonu sına <span aria-hidden="true">→</span>
+            </Link>
           </div>
-          <div className="flex-1 rounded border border-[#22E6A6]/50 p-5 text-center">
-            <div className="text-xs text-[#22E6A6] mb-2">AYDIN</div>
-            <div className="text-4xl font-bold text-[#22E6A6]">CANLI HƏLL</div>
-            <div className="text-xs text-neutral-500 mt-2">
-              hər təsdiqlənmiş halı sona qədər aparır
+
+          <div className="flex items-center justify-center py-8">
+            <span className="aydin-orb size-48 sm:size-64" aria-hidden="true">
+              <span className="aydin-halo" />
+              <span className="aydin-core" />
+            </span>
+          </div>
+        </section>
+
+        <hr className="border-t border-[#2f3336]" />
+
+        {/* Problem comparison */}
+        <section className="py-14 sm:py-16">
+          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+            Problemin köhnə və yeni yolu
+          </h2>
+          <p className="mt-3 text-[#8a9096] max-w-xl">
+            Ənənəvi dəstək sizi saatlarla gözlədir. Aydın problemi sürətli və real şəkildə həll
+            edir.
+          </p>
+
+          <div className="mt-10 grid sm:grid-cols-2 gap-10 sm:gap-0">
+            <div className="sm:pr-10">
+              <div className="flex items-center gap-2 text-[#8a9096]">
+                <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                  <path d="M3 5a2 2 0 0 1 2-2h2.5a1 1 0 0 1 1 .8l1 4a1 1 0 0 1-.5 1.1L7 10.5a12 12 0 0 0 6.5 6.5L15 15a1 1 0 0 1 1.1-.5l4 1a1 1 0 0 1 .8 1V21a2 2 0 0 1-2 2C9.3 23 1 14.7 1 5a2 2 0 0 1 2-2Z" />
+                </svg>
+                <span className="font-semibold">Ənənəvi dəstək</span>
+              </div>
+              <div className="mt-3 text-5xl font-extrabold tracking-tight">{comparison.old.stat}</div>
+              <p className="mt-2 text-[#8a9096]">{comparison.old.desc}</p>
+              <ul className="mt-6 flex flex-col gap-2.5">
+                {comparison.old.points.map((p) => (
+                  <li key={p} className="flex items-start gap-2 text-sm text-[#8a9096]">
+                    <span className="mt-0.5 text-[#536471]">✕</span> {p}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="sm:pl-10 sm:border-l sm:border-[#2f3336]">
+              <div className="flex items-center gap-2">
+                <span className="aydin-orb size-5" aria-hidden="true">
+                  <span className="aydin-halo" />
+                  <span className="aydin-core" />
+                </span>
+                <span className="font-semibold">Aydın</span>
+              </div>
+              <div className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight leading-[1.1] whitespace-pre-line">
+                {comparison.new.stat}
+              </div>
+              <ul className="mt-6 flex flex-col gap-2.5">
+                {comparison.new.points.map((p) => (
+                  <li key={p} className="flex items-start gap-2 text-sm text-[#e7e9ea]">
+                    <span className="mt-0.5 text-[#f5b73a]">✓</span> {p}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* How it works */}
-      <section className="px-6 py-16 max-w-4xl mx-auto">
-        <h2 className="text-center text-xs tracking-widest text-neutral-500 [font-family:var(--font-geist-mono)] mb-10">
-          NECƏ İŞLƏYİR
-        </h2>
-        <div className="grid sm:grid-cols-3 gap-6">
-          {steps.map((s) => (
-            <div key={s.n} className="rounded border border-neutral-800 p-5">
-              <div className="text-[#F5B301] text-xs [font-family:var(--font-geist-mono)] mb-2">
-                {s.n}
+        <hr className="border-t border-[#2f3336]" />
+
+        {/* How it works */}
+        <section className="py-14 sm:py-16">
+          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-10">Necə işləyir?</h2>
+          <div className="grid sm:grid-cols-3 gap-8 sm:gap-6 relative">
+            {steps.map((s, i) => (
+              <div key={s.n} className="relative">
+                <span className="grid size-9 place-items-center rounded-full bg-[#f5b73a] text-black font-extrabold text-sm">
+                  {s.n}
+                </span>
+                <h3 className="mt-4 font-bold text-lg">{s.title}</h3>
+                <p className="mt-1.5 text-sm text-[#8a9096] leading-relaxed">{s.body}</p>
+                {i < steps.length - 1 && (
+                  <span
+                    className="hidden sm:block absolute top-4 -right-3 text-[#536471] text-xl"
+                    aria-hidden="true"
+                  >
+                    →
+                  </span>
+                )}
               </div>
-              <div className="text-white font-bold text-sm mb-2 [font-family:var(--font-geist-mono)]">
-                {s.title}
+            ))}
+          </div>
+        </section>
+
+        <hr className="border-t border-[#2f3336]" />
+
+        {/* Stats */}
+        <section className="py-14 sm:py-16">
+          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-10">
+            Rəqəmlər öz sözünü deyir
+          </h2>
+          <div className="grid sm:grid-cols-3 gap-8">
+            {stats.map((s, i) => (
+              <div
+                key={s.label}
+                className={`${i > 0 ? "sm:pl-8 sm:border-l sm:border-[#2f3336]" : ""}`}
+              >
+                <div className="text-3xl sm:text-4xl font-extrabold tracking-tight">{s.value}</div>
+                <div className="mt-1.5 text-sm text-[#8a9096]">{s.label}</div>
               </div>
-              <p className="text-neutral-400 text-sm leading-relaxed">{s.body}</p>
+            ))}
+          </div>
+        </section>
+
+        <hr className="border-t border-[#2f3336]" />
+
+        {/* Roadmap */}
+        <section className="py-14 sm:py-16">
+          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight max-w-2xl">
+            Bu, real məhsulun ilk ayıdır, həftəsonu demosu deyil.
+          </h2>
+
+          <div className="mt-12 relative">
+            <div className="h-px bg-[#2f3336] w-full" />
+            <div className="absolute left-0 -top-[3px] size-2 rounded-full bg-[#f5b73a]" />
+            <div className="absolute right-0 -top-[3px] size-2 rounded-full bg-[#f5b73a]" />
+          </div>
+
+          <div className="mt-6 grid sm:grid-cols-2 gap-8">
+            <div>
+              <div className="text-sm font-bold text-[#f5b73a]">Ay 1</div>
+              <div className="mt-2 font-bold">İndiki vəziyyət</div>
+              <p className="mt-1 text-sm text-[#8a9096] leading-relaxed">
+                Ödəniş ixtilaflarının aşkarlanması, izahı və həlli.
+              </p>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Proof */}
-      <section className="px-6 py-10 border-y border-neutral-800 bg-[#0A0C0E]">
-        <div className="max-w-3xl mx-auto flex flex-wrap justify-center gap-x-10 gap-y-4 text-center [font-family:var(--font-geist-mono)]">
-          <div>
-            <div className="text-2xl font-bold text-white">8/8</div>
-            <div className="text-xs text-neutral-500">real test ssenarisi həll edildi</div>
-          </div>
-          <div>
-            <div className="text-2xl font-bold text-white">Claude Sonnet 5</div>
-            <div className="text-xs text-neutral-500">canlı tool-calling ilə</div>
-          </div>
-          <div>
-            <div className="text-2xl font-bold text-white">~0.008 $</div>
-            <div className="text-xs text-neutral-500">hər həll edilən söhbət üçün</div>
-          </div>
-        </div>
-      </section>
-
-      {/* Roadmap */}
-      <section className="px-6 py-16 max-w-3xl mx-auto">
-        <h2 className="text-center text-xs tracking-widest text-neutral-500 [font-family:var(--font-geist-mono)] mb-2">
-          BU GÜN GÖRDÜYÜNÜZ — 12 AYLIQ MƏHSULUN BİRİNCİ AYI
-        </h2>
-        <p className="text-center text-neutral-600 text-xs mb-10">
-          Həftə sonu triki deyil, məhsulun başlanğıcı.
-        </p>
-        <div className="flex flex-col gap-4 [font-family:var(--font-geist-mono)]">
-          {roadmap.map((r) => (
-            <div key={r.period} className="flex gap-4 items-start border-b border-neutral-900 pb-4">
-              <div className="text-[#F5B301] text-xs font-bold w-20 shrink-0 pt-0.5">
-                {r.period}
-              </div>
-              <div className="text-neutral-400 text-sm">{r.text}</div>
+            <div className="sm:text-right">
+              <div className="text-sm font-bold text-[#f5b73a]">Ay 12</div>
+              <div className="mt-2 font-bold">Tam vizyon</div>
+              <p className="mt-1 text-sm text-[#8a9096] leading-relaxed">
+                Real mühasibatlıq/billinq sistemlərinə bağlantı, daha geniş fırıldaqçılıq
+                aşkarlığı, provayderlərlə danışıqlar.
+              </p>
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
+        </section>
 
-      {/* Footer */}
-      <footer className="px-6 py-8 border-t border-neutral-800 text-center [font-family:var(--font-geist-mono)] text-xs text-neutral-600">
-        <div className="flex flex-wrap justify-center gap-4 mb-3">
-          <a href="https://github.com/h4midAslan/aydin-neurobridge-hackathon" className="hover:text-neutral-400">
-            GitHub
-          </a>
-          <a href="https://github.com/h4midAslan/aydin-neurobridge-hackathon/blob/master/docs/disclosure.md" className="hover:text-neutral-400">
-            Disclosure
-          </a>
-          <Link href="/console" className="hover:text-neutral-400">
-            Canlı demo
-          </Link>
-        </div>
-        <div>Starnest Academy · OMNI AI Summit · Azercell — NeuroBridge.SI Baku 2026</div>
-      </footer>
+        <hr className="border-t border-[#2f3336]" />
+
+        {/* Footer */}
+        <footer className="py-8 flex flex-wrap items-center justify-between gap-3 text-sm text-[#8a9096]">
+          <div className="flex flex-wrap gap-5">
+            <a href="https://github.com/h4midAslan/aydin-neurobridge-hackathon" className="hover:text-white">
+              GitHub
+            </a>
+            <a
+              href="https://github.com/h4midAslan/aydin-neurobridge-hackathon/blob/master/docs/disclosure.md"
+              className="hover:text-white"
+            >
+              Disclosure
+            </a>
+            <Link href="/console" className="hover:text-white">
+              Canlı demo
+            </Link>
+          </div>
+          <div className="text-xs text-[#536471]">NeuroBridge.SI Baku 2026</div>
+        </footer>
+      </div>
     </div>
   );
 }
