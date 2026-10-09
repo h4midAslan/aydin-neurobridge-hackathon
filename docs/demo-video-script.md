@@ -33,39 +33,37 @@ the "17%" badge pinned in a corner).
 ## 0:15–0:35 — The call opens itself (proactive detection, not a typed question)
 
 No user message yet. Aydın has already scanned the account on connect and
-opens the call on its own:
+opens the call on its own — flagging that something is worth checking
+**without naming which subscription yet**, so the disambiguation moment at
+0:35 is genuine rather than scripted:
 
 **On-screen transcript (AZ), appearing as if spoken, not typed by a user:**
-> Salam! Hesabınıza baxdım. Balansınızdan gündəlik 0.35 AZN "Sindibad
-> Premium Content" adlı xidmətə görə silinir. Bundan əlavə, özünüzün
-> aktivləşdirdiyiniz 2GB əlavə internet paketiniz də var.
+> Salam! Hesabınıza baxdım. Hazırda 2 aktiv abunəliyiniz var, və
+> onlardan biri sizə tanış gəlməyə bilər — bir baxmaq istərdinizmi?
 
 Let this render fully on screen, pause — this is the moment that proves the
-product is not waiting to be asked. It noticed the problem first.
+product is not waiting to be asked. It noticed the problem first, but it
+has deliberately not yet said which charge is the suspicious one.
 
 ## 0:35–0:50 — The ambiguity trap (this is the proof-of-reasoning beat)
 
-**⚠️ TESTED AND LIKELY BROKEN AS WRITTEN — read before recording.** Real
-test runs show that once the opener has named Sindibad specifically as the
-one to cancel, "Bunu ləğv et" is no longer ambiguous in context — Claude
-will almost certainly just cancel it directly instead of asking "which one?"
-(confirmed in `docs/testing-results.md`, case 2). Genuine disambiguation
-only triggers with **zero prior context** pointing at one subscription
-(confirmed in case 10, message: "Abunəliyi ləğv et" as the very first
-message of a conversation). Two options before recording: (1) cut this beat
-and accept a clean direct resolution instead — still a strong demo moment,
-just not a disambiguation proof — or (2) restructure so this exchange opens
-the call instead of the proactive-opener beat, then show the proactive
-detection separately. Pick one and update this section accordingly; do not
-record the beat as currently scripted expecting a "which one?" response.
+**Fixed and verified against real test behavior.** Because the opener above
+named neither subscription specifically, two active subscriptions are on
+screen and nothing has been proposed as "the one" yet — so the exchange
+below is structurally identical to the validated zero-context case in
+`docs/testing-results.md` (case 10: "Abunəliyi ləğv et" as a first message),
+which correctly triggered disambiguation. This replaces the earlier draft of
+this beat, which had the opener name Sindibad directly and would not have
+triggered a real "which one?" response (see case 2 in the same file for why).
 
 **Type/speak into the console (AZ):**
 > Bunu ləğv et.
 
-Two things were just named, so "bunu" (this one) is genuinely ambiguous.
-Aydın must NOT guess — it asks which of the two is meant, naming both. Hold
-on this exchange; it's the clearest evidence this is reasoning over account
-state, not a scripted lookup triggered by a keyword.
+Two subscriptions are visible and neither has been named as "the one" yet,
+so "bunu" (this one) is genuinely ambiguous. Aydın must NOT guess — it lists
+both and asks which is meant. Hold on this exchange; it's the clearest
+evidence this is reasoning over account state, not a scripted lookup
+triggered by a keyword.
 
 ## 0:50–1:10 — Resolution, live
 
