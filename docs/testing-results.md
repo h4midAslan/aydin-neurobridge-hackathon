@@ -1,4 +1,4 @@
-# Quality testing — Aydın
+# Quality testing — Clario
 
 Ran against a live `npm run dev` instance with a real `ANTHROPIC_API_KEY`
 (model: `claude-sonnet-5`), using `scripts/test-battery.mjs`. 10 cases total
@@ -119,7 +119,7 @@ Azercell's own AiCell bot resolves only **17%** of customer inquiries
 end-to-end despite **96.6%** comprehension accuracy — the rest get routed to
 a human.
 
-Two honest ways to read Aydın's 9 original battery cases against that
+Two honest ways to read Clario's 9 original battery cases against that
 (case 11's cancel+refund orchestration only strengthens this further, since
 it resolves both the ongoing charge and the past overcharge in one
 confirmation — AiCell's 17% doesn't attempt refunds at all):
@@ -127,7 +127,7 @@ confirmation — AiCell's 17% doesn't attempt refunds at all):
 - **Strict / immediate-action count: 4 of 9** (cases 2, 3, 5, 6) resulted in
   a completed cancellation inside that same exchange.
 - **Relevant-case count: 8 of 8** cases that involved an actual billing
-  concern (i.e. excluding #7, pure off-topic small talk) ended with Aydın
+  concern (i.e. excluding #7, pure off-topic small talk) ended with Clario
   either (a) completing the resolution on the spot, or (b) correctly
   identifying the exact fix and asking for one word of confirmation before
   acting on an irreversible change — never punting to a human, and never
@@ -135,6 +135,6 @@ confirmation — AiCell's 17% doesn't attempt refunds at all):
 
 Either framing beats AiCell's 17%; the second is the more honest
 comparison, since AiCell's 17% almost certainly already counts "told the
-user what the problem is but didn't fix it" as a non-resolution — Aydın's
+user what the problem is but didn't fix it" as a non-resolution — Clario's
 "pending one word of confirmation" cases are a deliberate safety choice, not
 a failure to act.

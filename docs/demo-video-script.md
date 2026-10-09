@@ -1,4 +1,4 @@
-# Aydın — demo video script (target: 2:00, hard cap)
+# Clario — demo video script (target: 2:00, hard cap)
 
 **Framing, read this before recording:** this is not a chatbot demo. It is one
 recording of *the call that usually doesn't get finished*. AiCell (Azercell's
@@ -6,7 +6,7 @@ own voice bot) resolves this exact kind of request only 17% of the time
 despite understanding Azerbaijani almost perfectly (96.6%). The whole video
 is structured as: watch that call fail (stated, not shown — we don't have
 AiCell footage), then watch the identical call succeed end to end in the
-Aydın call console. Never call our own product a chatbot in narration or
+Clario call console. Never call our own product a chatbot in narration or
 captions — it's a resolution console / call console. "Chatbot" is a word we
 only use for what it's replacing.
 
@@ -24,7 +24,7 @@ instant the cancellation executes.
 **Caption (on screen, AZ):**
 > Azercell-in AiCell botu bu tip müraciətlərin 96.6%-ni başa düşür —
 > amma yalnız 17%-ni HƏLL edir. Bax, həmin zəng adətən necə bitir.
-> İndi Aydın-ın onu necə bitirdiyinə bax.
+> İndi Clario-ın onu necə bitirdiyinə bax.
 
 Cut title card at 0:12–0:15, reveal the live call console underneath
 (header/timer visible, sidebar showing balance + two active subscriptions,
@@ -32,7 +32,7 @@ the "17%" badge pinned in a corner).
 
 ## 0:15–0:35 — The call opens itself (proactive detection, not a typed question)
 
-No user message yet. Aydın has already scanned the account on connect and
+No user message yet. Clario has already scanned the account on connect and
 opens the call on its own — flagging that something is worth checking
 **without naming which subscription yet**, so the disambiguation moment at
 0:35 is genuine rather than scripted:
@@ -60,7 +60,7 @@ triggered a real "which one?" response (see case 2 in the same file for why).
 > Bunu ləğv et.
 
 Two subscriptions are visible and neither has been named as "the one" yet,
-so "bunu" (this one) is genuinely ambiguous. Aydın must NOT guess — it lists
+so "bunu" (this one) is genuinely ambiguous. Clario must NOT guess — it lists
 both and asks which is meant. Hold on this exchange; it's the clearest
 evidence this is reasoning over account state, not a scripted lookup
 triggered by a keyword.
@@ -70,7 +70,7 @@ triggered by a keyword.
 **Reply (AZ):**
 > Sindibad olanı.
 
-Aydın calls `cancel_subscription` and confirms ("Sindibad Premium Content
+Clario calls `cancel_subscription` and confirms ("Sindibad Premium Content
 ləğv edildi. Artıq gündə 0.35 AZN alınmayacaq."). **Camera must catch two
 things updating live at once:** the sidebar row flips to "✓ Ləğv edilib",
 and the call-status line flips from pending to **"✅ ZƏNG: HƏLL EDİLDİ"**
@@ -82,7 +82,7 @@ the corner. That juxtaposition in one frame is the entire pitch.
 **Reply (AZ):**
 > Yenə ləğv et.
 
-Aydın recognizes it's already cancelled and says so plainly, no error. Skip
+Clario recognizes it's already cancelled and says so plainly, no error. Skip
 entirely if running long — go straight to 1:20.
 
 ## 1:20–1:30 — Testing nod (on-screen text overlay, 2–3s, no narration)
@@ -104,12 +104,12 @@ entirely if running long — go straight to 1:20.
 resolved call console (both the "HƏLL EDİLDİ" status and the "17%" badge
 visible in the same shot):**
 > AiCell: bu tip zəngləri 17% hallarda başa çatdırır.
-> Aydın: eyni zəngi başdan sona özü bitirir.
+> Clario: eyni zəngi başdan sona özü bitirir.
 >
 > Bu söhbət botu deyil — bitirilən zəngdir.
 
 End card:
-> Aydın — NeuroBridge.SI Baku 2026 · AI Enterprise Solutions
+> Clario — NeuroBridge.SI Baku 2026 · AI Enterprise Solutions
 
 ---
 
