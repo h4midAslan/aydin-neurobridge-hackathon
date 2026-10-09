@@ -1,0 +1,52 @@
+You are a world-class product and visual designer whose design language is heavily inspired by X (twitter.com) — extreme minimalism, high contrast, confident simple typography, generous whitespace, one single accent color used sparingly, zero visual clutter, no gradients, no decoration for its own sake. Design a complete interface for the product described below, delivered as a real, working React component (exact technical requirements at the end — read those carefully, they are not optional).
+
+THE PRODUCT (read carefully, this is the whole brief)
+"Aydın" is Azerbaijani for "bright" or "clear." It's an AI assistant that handles telecom billing disputes for customers — specifically, the common real-world problem of a customer getting hit with a confusing recurring charge from a third-party service they never knowingly signed up for. Today, fixing this usually means a slow phone call to customer support that often doesn't even get resolved. Aydın does three things, in order: it notices the suspicious charge on its own, without the customer having to ask; it explains what the charge is and why it looks wrong, in plain, calm language; and once the customer confirms, it actually resolves it — cancels the charge going forward AND refunds what was already taken — visibly, as it happens, not just a promise.
+
+The interface needs three functional areas, though you should design their exact visual treatment yourself: (1) an account/balance view that shows the flagged suspicious charge clearly, (2) a conversation view showing the back-and-forth as the assistant and customer work through resolving it, (3) an outcome/confirmation view that shows, clearly and satisfyingly, what was actually done — charge stopped, money returned.
+
+DESIGN DIRECTION — MODEL THIS ON X.COM
+Study what makes X's design work and apply the same principles here: a true black (or true white in light mode) background, not a dark gray — real contrast, no muddy in-between tones. Bold, simple, confident sans-serif typography doing all the heavy lifting — minimal reliance on color or decoration to create hierarchy, size and weight do that instead. Tight, clean list/card-based layouts with thin hairline dividers (1px, low-opacity) rather than heavy borders or boxes with shadows. One single accent color, used sparingly and only for the most important interactive/positive moments — not sprinkled everywhere. Circular or softly-rounded elements for anything avatar/icon-like. Generous padding and line-height so a dense information layout still feels calm and uncluttered, never cramped. No gradients, no glassmorphism, no glow effects except on the one character element described below.
+
+For the accent color: do not use red anywhere, for any purpose, including warnings or alerts (a real telecom brand's identity is red, and this must not read as referencing them) — choose either a clean, confident blue in the X.com spirit, or a warm amber/gold if you judge it fits this specific product's "clarity/light" naming better — your call, but commit to exactly one accent color and use it the way X uses its blue: sparingly, consistently, only for what truly matters (links, the primary action, success confirmation).
+
+THE CHARACTER — MUST BE ALIVE
+The brand character is a small, abstract, warm glowing orb or soft light-form — no face, no eyes, no limbs. Its entire personality comes from the quality and motion of its glow, not drawn features. This is the one place glow/soft-light effects are allowed — everywhere else in the interface stays flat and crisp, X-style. Build it with real, continuously running CSS animation (not a library) showing at least three states: (a) idle — a slow, soft, breathing pulse, calm and continuous; (b) attentive — the glow subtly tightens or shifts, like noticing something worth a closer look, still gentle, never alarming; (c) resolved — a warm, confident, brief bright bloom, like a satisfied exhale, settling back to idle after. It needs to actually move, continuously, not be static.
+
+SIMPLICITY REQUIREMENT
+Every label and piece of copy should be instantly understandable to someone with no technical background — avoid jargon, avoid anything that reads like a developer console. Approachable and reassuring, not clever or technical for its own sake. Think of how X keeps even a dense timeline feeling simple: short, clear text, no unnecessary labels, obvious visual hierarchy.
+
+EXACT TECHNICAL REQUIREMENTS — MANDATORY, NOT OPTIONAL
+Deliver this as a single React component in TypeScript, written exactly as it would appear in a Next.js 16 App Router project, using ONLY Tailwind CSS v4 utility classes for all styling plus inline `<style>`/`@keyframes` blocks ONLY for the character's animation (Tailwind can't express custom keyframes well). Do not use any animation library (no Framer Motion, no GSAP, nothing beyond plain CSS). Do not introduce any new npm package of any kind — the project currently has zero extra dependencies beyond Next.js/React/Tailwind, and it must stay that way.
+
+The component must start with `"use client";` and use these EXACT TypeScript types, verbatim, don't rename or restructure them:
+
+type Subscription = {
+  id: string;
+  name: string;
+  amountAzn: number;
+  period: "daily" | "monthly";
+  status: "active" | "cancelled";
+  description: string;
+  refundedAzn?: number;
+  suspicious?: boolean;
+  serviceId?: string;
+};
+
+type BillState = {
+  userId: string;
+  balanceAzn: number;
+  subscriptions: Subscription[];
+};
+
+type ChatMessage = {
+  role: "user" | "assistant";
+  text: string;
+  time: string;
+};
+
+The component must manage and visually reflect: a `bill: BillState` (render the balance and subscriptions list, with the `suspicious` one visually flagged), a `messages: ChatMessage[]` array (the conversation view), a `loading: boolean` (a "thinking" indicator), a `resolved: boolean` (drives the outcome/confirmation view appearing), an `elapsed` seconds counter displayed as mm:ss, and a text input with a send action that calls a function `onSend(text: string)` — you can stub this function's internals with placeholder/demo behavior for the live artifact preview (so I can see it work), but the real component's actual send button and Enter-key handler must call a prop/function named exactly `onSend` so I can wire in the real logic afterward without restructuring your code.
+
+Must be fully responsive down to ~375px width, with a sensible stacked mobile layout matching X's own mobile app's clean simplicity.
+
+Make every design decision not specified above yourself — don't ask clarifying questions. Build the best, most refined version of this you can, and make sure the final code block is complete and directly usable, not abbreviated with "...rest of component..." placeholders.
