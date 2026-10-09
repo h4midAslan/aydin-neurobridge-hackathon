@@ -106,12 +106,12 @@ quietly swapping in case 10 and pretending case 2 was the real test — the
 rubric rewards honest failures, and the honest finding here is "our first
 attempt at this test didn't test what we thought it did."
 
-**Practical consequence for the demo video:** `docs/demo-video-script.md`'s
-0:35–0:50 "ambiguity trap" beat has the same structural issue as case 2 — it
-runs "Bunu ləğv et" right after the proactive opener has already named
-Sindibad specifically, so it will very likely just cancel directly rather
-than ask "which one?" Flagged inline in that file; needs a decision before
-recording (see note there).
+**Practical consequence for the demo video — resolved:** `docs/demo-video-script.md`'s
+0:35–0:50 "ambiguity trap" beat originally had the same structural issue as
+case 2 (the proactive opener named Sindibad before the "cancel it" moment,
+pre-resolving the ambiguity). This has since been fixed in that file — the
+opener now flags "something worth checking" without naming a subscription,
+so the later "cancel it" moment is genuinely ambiguous when recorded.
 
 ## Comparison to the current approach
 
