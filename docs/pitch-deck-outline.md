@@ -38,19 +38,20 @@ Track: AI Enterprise Solutions · Team whoami · NeuroBridge.SI Baku 2026
 ---
 
 ### Slide 6 — Feasibility (15 pts)
+- Target market: Azerbaijani telecom and subscription-based service providers generally — not dependent on any single partner to be viable.
 - Data needed for production: read access to real billing/subscription records + a cancellation write-path, with mandatory auth and an auditable action log.
 - Cost: ~$0.008 per fully resolved conversation on Claude Sonnet 5 — negligible versus a human-handled support ticket.
-- Next step: pilot via Azercell's Barama Innovation Center — built for exactly this hand-off from hackathon to business unit.
+- Next step: Azercell is the most relevant illustrative case study and the most natural first pilot partner, since they're already a partner of this hackathon network and have published the exact benchmark (AiCell's 17%) this product improves on — their Barama Innovation Center is built for exactly this hand-off from hackathon to business unit. The product itself generalizes beyond any one operator.
 
 ---
 
 ### Slide 7 — Originality (10 pts)
 - AiCell (Azercell's own bot): 96.6% Azerbaijani comprehension, but only 17% end-to-end resolution — understands fine, doesn't finish the job.
-- Aydın is the resolution layer for that unresolved 83%, starting with the #1 recurring-complaint pattern.
-- Contrast with this event's other enterprise entries (e.g. DocuTrust AI): those retrieve and answer from internal documents; Aydın acts on a real external consumer problem and changes account state.
+- Aydın is a resolution console, not a chatbot: it opens the call itself the moment it detects a problem, and the interface itself reports pending vs. resolved like a call log, not a message thread. The category is different, not just the feature set.
+- Contrast with this event's other enterprise entries (e.g. DocuTrust AI): those retrieve and answer from internal documents; Aydın acts on a real external consumer problem and changes account state on its own initiative.
 
 ---
 
 ### Slide 8 — Close
-- One line: "AiCell understands you. Aydın gets it done."
-- Ask: a pilot slot through Barama Innovation Center.
+- One line: "AiCell understands the call. Aydın finishes it."
+- Ask: a pilot slot through Barama Innovation Center, as the first of many possible telecom/subscription-service partners.
