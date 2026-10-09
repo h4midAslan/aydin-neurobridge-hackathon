@@ -100,7 +100,13 @@ async function run() {
   r = await send("bu pulu kim yeyir?", [], freshBill());
   log("8: colloquial complaint", "bu pulu kim yeyir?", r);
 
-  console.log("\nAll 8 cases ran. Copy the transcripts above into docs/testing-results.md.");
+  // --- Group F: proactive opening trigger (page.tsx mount behavior) ---
+  const openerMsg =
+    "[SİSTEM: istifadəçi tətbiqi indicə açdı. Hesabı skan et (get_bill çağır) və diqqəti çəkən məqamı özün, soruşulmadan, bildir.]";
+  r = await send(openerMsg, [], freshBill());
+  log("9: proactive opener (synthetic mount trigger)", openerMsg, r);
+
+  console.log("\nAll 9 cases ran. Copy the transcripts above into docs/testing-results.md.");
 }
 
 run().catch((err) => {

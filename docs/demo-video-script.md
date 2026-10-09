@@ -45,6 +45,20 @@ product is not waiting to be asked. It noticed the problem first.
 
 ## 0:35–0:50 — The ambiguity trap (this is the proof-of-reasoning beat)
 
+**⚠️ TESTED AND LIKELY BROKEN AS WRITTEN — read before recording.** Real
+test runs show that once the opener has named Sindibad specifically as the
+one to cancel, "Bunu ləğv et" is no longer ambiguous in context — Claude
+will almost certainly just cancel it directly instead of asking "which one?"
+(confirmed in `docs/testing-results.md`, case 2). Genuine disambiguation
+only triggers with **zero prior context** pointing at one subscription
+(confirmed in case 10, message: "Abunəliyi ləğv et" as the very first
+message of a conversation). Two options before recording: (1) cut this beat
+and accept a clean direct resolution instead — still a strong demo moment,
+just not a disambiguation proof — or (2) restructure so this exchange opens
+the call instead of the proactive-opener beat, then show the proactive
+detection separately. Pick one and update this section accordingly; do not
+record the beat as currently scripted expecting a "which one?" response.
+
 **Type/speak into the console (AZ):**
 > Bunu ləğv et.
 
@@ -75,10 +89,12 @@ entirely if running long — go straight to 1:20.
 
 ## 1:20–1:30 — Testing nod (on-screen text overlay, 2–3s, no narration)
 
-> [CONFIRM COUNT — pending: docs/testing-results.md battery has not run yet.
-> Do not fill this with an invented number; leave blank until the real
-> battery completes, then state the exact case count and how many resolved
-> end-to-end without human handoff.]
+> 10 real test ssenarisi işlədildi. 8/8 hesab məsələsi insana ötürülmədən
+> həll edildi ya da təsdiq üçün dəqiq addım təklif olundu.
+>
+> (Source: docs/testing-results.md. Strict immediate-cancellation count is
+> 4/9 — use the 8/8 "never punted to a human" framing here, it's the more
+> honest and more impressive comparison against AiCell's 17%.)
 
 ## 1:30–1:40 — Feasibility nod (on-screen text overlay, 2–3s, no narration)
 

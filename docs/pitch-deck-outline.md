@@ -32,8 +32,10 @@ Track: AI Enterprise Solutions · Team whoami · NeuroBridge.SI Baku 2026
 ---
 
 ### Slide 5 — Quality testing (20 pts)
-`[PLACEHOLDER — fill from docs/testing-results.md once the Test Engineer agent finishes the 8-case battery]`
-- Structure to fill in: test cases run → pass/fail → the one honest failure found → the fix (or the known limitation if unfixed) → resolution-rate comparison against AiCell's own published 17%.
+- 10 real test cases run live against Claude Sonnet 5, not scripted: vague openers, direct named cancellation, idempotent re-cancel, off-topic small talk, slang/colloquial NLU, the proactive opening trigger, and a genuine zero-context ambiguity test.
+- Honest finding: our first ambiguity test was flawed (prior context had already resolved the reference) — caught it, added a real zero-context test, which passed: Aydın correctly asked "which subscription?" instead of guessing.
+- Result: of the 8 cases involving an actual billing concern, all 8 ended with Aydın either resolving it on the spot or asking one confirming word before an irreversible action — never punting to a human. 4 of 9 resolved with an immediate completed cancellation in the same exchange.
+- Compare: AiCell resolves 17% of such cases end-to-end. Full transcripts in `docs/testing-results.md`.
 
 ---
 
