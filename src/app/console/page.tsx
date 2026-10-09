@@ -403,7 +403,7 @@ export default function AydinConsole() {
                 href="/paketler"
                 className="text-sm text-[#8a9096] hover:text-[#f5b73a] transition-colors"
               >
-                Mənə uyğun tarif seç et →
+                Mənə uyğun tarif seç →
               </Link>
             </div>
           </section>

@@ -74,7 +74,7 @@ export default function LandingPage() {
                 href="/paketler"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-[#2f3336] px-6 py-3.5 text-base font-bold text-white transition hover:border-[#536471]"
               >
-                Mənə uyğun tarif seç et
+                Mənə uyğun tarif seç
               </Link>
             </div>
           </div>
