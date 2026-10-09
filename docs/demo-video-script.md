@@ -1,82 +1,98 @@
 # Aydın — demo video script (target: 2:00, hard cap)
 
-Recording notes: single take through the live app if possible. Pre-load the app
-with the default mock bill (balance 4.72 AZN; "Sindibad Premium Content" 0.35
-AZN/gün — active; "Əlavə 2GB internet paketi" 2.0 AZN/ay — active) before
-hitting record. Type at a normal pace; don't rush the clarification beat, it's
-the most important 10 seconds in the video.
+**Framing, read this before recording:** this is not a chatbot demo. It is one
+recording of *the call that usually doesn't get finished*. AiCell (Azercell's
+own voice bot) resolves this exact kind of request only 17% of the time
+despite understanding Azerbaijani almost perfectly (96.6%). The whole video
+is structured as: watch that call fail (stated, not shown — we don't have
+AiCell footage), then watch the identical call succeed end to end in the
+Aydın call console. Never call our own product a chatbot in narration or
+captions — it's a resolution console / call console. "Chatbot" is a word we
+only use for what it's replacing.
 
-## 0:00–0:15 — Opening (on-screen title card over the loaded app)
+Recording notes: single take through the live app if possible. Pre-load the
+app with the default mock bill (balance 4.72 AZN; "Sindibad Premium Content"
+0.35 AZN/gün — active; "Əlavə 2GB internet paketi" 2.0 AZN/ay — active)
+before hitting record. The call console UI should be visible throughout: a
+persistent corner badge reading "AiCell-in bu tip müraciətlərdə həll
+nisbəti: 17%", a call-in-progress header/timer instead of chat-app chrome,
+and a status line that flips from pending to a hard success state the
+instant the cancellation executes.
+
+## 0:00–0:15 — Opening (on-screen title card, before the call console is shown)
 
 **Caption (on screen, AZ):**
-> Azercell-in AiCell botu müraciətlərin 96.6%-ni başa düşür — amma yalnız
-> 17%-ni HƏLL edir. Aydın qalan 83%-dən biri ilə başlayır: anlaşılmayan
-> abunəlik haqları.
+> Azercell-in AiCell botu bu tip müraciətlərin 96.6%-ni başa düşür —
+> amma yalnız 17%-ni HƏLL edir. Bax, həmin zəng adətən necə bitir.
+> İndi Aydın-ın onu necə bitirdiyinə bax.
 
-Cut title card at 0:12–0:15, reveal the live app underneath (sidebar visible:
-balance + two active subscriptions).
+Cut title card at 0:12–0:15, reveal the live call console underneath
+(header/timer visible, sidebar showing balance + two active subscriptions,
+the "17%" badge pinned in a corner).
 
-## 0:15–0:30 — Vague opener
+## 0:15–0:35 — The call opens itself (proactive detection, not a typed question)
 
-**Type into chat (AZ):**
-> Niyə hesabımdan pul çıxır?
+No user message yet. Aydın has already scanned the account on connect and
+opens the call on its own:
 
-Let the "yazır…" indicator show briefly (proves it's a live call, not a
-canned reply). Assistant calls `get_bill` and responds explaining **both**
-charges — the Sindibad one flagged as a third-party/suspicious charge, the
-2GB add-on identified as something the user activated themselves. Let the
-full reply render on screen (pause here, don't talk over it — the judge
-needs to read it).
+**On-screen transcript (AZ), appearing as if spoken, not typed by a user:**
+> Salam! Hesabınıza baxdım. Balansınızdan gündəlik 0.35 AZN "Sindibad
+> Premium Content" adlı xidmətə görə silinir. Bundan əlavə, özünüzün
+> aktivləşdirdiyiniz 2GB əlavə internet paketiniz də var.
 
-## 0:30–0:45 — The ambiguity trap (this is the proof-of-reasoning beat)
+Let this render fully on screen, pause — this is the moment that proves the
+product is not waiting to be asked. It noticed the problem first.
 
-**Type into chat (AZ):**
+## 0:35–0:50 — The ambiguity trap (this is the proof-of-reasoning beat)
+
+**Type/speak into the console (AZ):**
 > Bunu ləğv et.
 
-Assistant must NOT guess — it should ask which subscription is meant
-(listing both by name). Hold on this exchange for a beat; this is the moment
-that shows real reasoning instead of a scripted lookup, so don't cut away
-quickly.
+Two things were just named, so "bunu" (this one) is genuinely ambiguous.
+Aydın must NOT guess — it asks which of the two is meant, naming both. Hold
+on this exchange; it's the clearest evidence this is reasoning over account
+state, not a scripted lookup triggered by a keyword.
 
-## 0:45–1:05 — Resolution, live
+## 0:50–1:10 — Resolution, live
 
-**Type into chat (AZ):**
+**Reply (AZ):**
 > Sindibad olanı.
 
-Assistant calls `cancel_subscription` and confirms in Azerbaijani (e.g.
-"Sindibad Premium Content ləğv edildi. Artıq gündə 0.35 AZN alınmayacaq.").
-**Camera must catch the sidebar update live** — the Sindibad row flips to
-"✓ Ləğv edilib" the moment the tool executes. This single frame is the whole
-pitch: the AI didn't explain, it resolved.
+Aydın calls `cancel_subscription` and confirms ("Sindibad Premium Content
+ləğv edildi. Artıq gündə 0.35 AZN alınmayacaq."). **Camera must catch two
+things updating live at once:** the sidebar row flips to "✓ Ləğv edilib",
+and the call-status line flips from pending to **"✅ ZƏNG: HƏLL EDİLDİ"**
+(CALL: RESOLVED) — directly beside the "AiCell: 17%" badge still pinned in
+the corner. That juxtaposition in one frame is the entire pitch.
 
-## 1:05–1:20 — Idempotency / confidence beat (optional if time allows, cut first if over)
+## 1:10–1:20 — Idempotency / confidence beat (optional, cut first if over time)
 
-**Type into chat (AZ):**
+**Reply (AZ):**
 > Yenə ləğv et.
 
-Assistant should recognize it's already cancelled and say so plainly,
-without erroring. Shows the system is robust, not just a lucky happy path.
-If running long, skip this beat entirely and go straight to 1:20.
+Aydın recognizes it's already cancelled and says so plainly, no error. Skip
+entirely if running long — go straight to 1:20.
 
 ## 1:20–1:30 — Testing nod (on-screen text overlay, 2–3s, no narration)
 
-> [CONFIRM COUNT] real müştəri ifadəsi ilə sınaqdan keçirildi — bağlı,
-> açıq-aydın, hətta danışıq dilində.
-
-(Count to be filled once the Test Engineer's battery results land —
-currently scoped as an 8-case battery.)
+> [CONFIRM COUNT — pending: docs/testing-results.md battery has not run yet.
+> Do not fill this with an invented number; leave blank until the real
+> battery completes, then state the exact case count and how many resolved
+> end-to-end without human handoff.]
 
 ## 1:30–1:40 — Feasibility nod (on-screen text overlay, 2–3s, no narration)
 
-> Resolution başına təxmini xərc: [INSERT FROM docs/submission.md
-> FEASIBILITY SECTION]
+> Resolution başına təxmini xərc: ~$0.008 (2 qəpikdən az).
 
 ## 1:40–2:00 — Closing
 
 **Caption (on screen, AZ), held for the last ~15s over a still frame of the
-resolved bill state:**
-> AiCell: müraciətlərin 17%-ni həll edir.
-> Aydın: eyni şikayəti başdan sona özü həll edir.
+resolved call console (both the "HƏLL EDİLDİ" status and the "17%" badge
+visible in the same shot):**
+> AiCell: bu tip zəngləri 17% hallarda başa çatdırır.
+> Aydın: eyni zəngi başdan sona özü bitirir.
+>
+> Bu söhbət botu deyil — bitirilən zəngdir.
 
 End card:
 > Aydın — NeuroBridge.SI Baku 2026 · AI Enterprise Solutions
@@ -84,5 +100,5 @@ End card:
 ---
 
 **Total runtime budget:** 2:00 flat. If anything overruns, cut the
-idempotency beat (1:05–1:20) first — it's the only non-essential section;
+idempotency beat (1:10–1:20) first — it's the only non-essential section;
 every other beat maps directly to one of the five scoring criteria.
