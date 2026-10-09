@@ -1,0 +1,77 @@
+{
+  "silhouette": 0.3917754594465544,
+  "stability_ari": 0.9168211602828099,
+  "ari_vs_hidden_type": 0.8358765202421478,
+  "classifier_results": {
+    "LogisticRegression": {
+      "accuracy": 0.992,
+      "macro_f1": 0.9920408073356294,
+      "fold_acc_min": 0.989,
+      "fold_acc_max": 0.995
+    },
+    "RandomForest": {
+      "accuracy": 0.9902,
+      "macro_f1": 0.9902670407957641,
+      "fold_acc_min": 0.989,
+      "fold_acc_max": 0.991
+    },
+    "ExtraTrees": {
+      "accuracy": 0.9892,
+      "macro_f1": 0.9894511580536337,
+      "fold_acc_min": 0.987,
+      "fold_acc_max": 0.99
+    },
+    "HistGradientBoosting": {
+      "accuracy": 0.989,
+      "macro_f1": 0.9893158271910517,
+      "fold_acc_min": 0.986,
+      "fold_acc_max": 0.993
+    },
+    "GradientBoosting": {
+      "accuracy": 0.9892,
+      "macro_f1": 0.9891416039044312,
+      "fold_acc_min": 0.987,
+      "fold_acc_max": 0.993
+    },
+    "SVM_RBF": {
+      "accuracy": 0.9914,
+      "macro_f1": 0.9918117683163639,
+      "fold_acc_min": 0.987,
+      "fold_acc_max": 0.994
+    },
+    "MLP": {
+      "accuracy": 0.9854,
+      "macro_f1": 0.9854623733349085,
+      "fold_acc_min": 0.984,
+      "fold_acc_max": 0.987
+    }
+  },
+  "best_model": "LogisticRegression",
+  "n_packages": 30,
+  "economics_train": {
+    "n_users": 5000,
+    "avg_user_savings_azn": 2.193,
+    "avg_operator_margin_change_azn": -2.193,
+    "pct_users_who_save": 72.18,
+    "pct_win_win": 0.0
+  },
+  "economics_same_dist": {
+    "n_users": 2000,
+    "avg_user_savings_azn": 2.353,
+    "avg_operator_margin_change_azn": -2.353,
+    "pct_users_who_save": 70.5,
+    "pct_win_win": 0.0
+  },
+  "economics_drift": {
+    "n_users": 2000,
+    "avg_user_savings_azn": 4.353,
+    "avg_operator_margin_change_azn": -4.353,
+    "pct_users_who_save": 73.1,
+    "pct_win_win": 0.0
+  },
+  "own_tier_coverage_train_pct": 97.22,
+  "own_tier_coverage_same_dist_pct": 96.75,
+  "own_tier_coverage_drift_pct": 89.2,
+  "demo_users_correct": "6/6",
+  "pipeline_wall_time_s": 155.8939512320212
+}

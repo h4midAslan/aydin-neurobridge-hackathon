@@ -1,4 +1,6 @@
 import type { BillState } from "./mockBill";
+import { demoUsageProfile } from "./usageProfile";
+import { recommendPlan, cheapestExistingOffer } from "./tariff/recommend";
 
 export const toolDefinitions = [
   {
@@ -43,6 +45,48 @@ export const toolDefinitions = [
         },
       },
       required: ["subscription_id", "periods"],
+    },
+  },
+  {
+    name: "get_usage_profile",
+    description:
+      "İstifadəçinin son 30 gündə mobil internetini hansı tətbiqlərdə işlətdiyini (sosial media, video, rabitə, iş, AI tətbiqləri, oyun) qaytarır. İstifadəçi daha münasib/sərfəli tarif istəyəndə ƏVVƏLCƏ bunu çağır.",
+    input_schema: {
+      type: "object",
+      properties: {},
+    },
+  },
+  {
+    name: "recommend_plan",
+    description:
+      "get_usage_profile-dan alınan istifadə məlumatına əsasən ən uyğun yeni tarif paketini və qiymətini qaytarır. get_usage_profile-ı ƏVVƏLCƏ çağırmadan bunu çağırma — onun nəticəsindəki dəyərləri olduğu kimi buraya ötür.",
+    input_schema: {
+      type: "object",
+      properties: {
+        social_media_gb: { type: "number" },
+        tiktok_gb: { type: "number" },
+        instagram_gb: { type: "number" },
+        video_streaming_gb: { type: "number" },
+        youtube_gb: { type: "number" },
+        netflix_gb: { type: "number" },
+        communication_gb: { type: "number" },
+        whatsapp_gb: { type: "number" },
+        collaboration_gb: { type: "number" },
+        teams_gb: { type: "number" },
+        ai_apps_gb: { type: "number" },
+        chatgpt_gb: { type: "number" },
+        claude_gb: { type: "number" },
+        gemini_gb: { type: "number" },
+        gaming_gb: { type: "number" },
+      },
+      required: [
+        "social_media_gb", "tiktok_gb", "instagram_gb",
+        "video_streaming_gb", "youtube_gb", "netflix_gb",
+        "communication_gb", "whatsapp_gb",
+        "collaboration_gb", "teams_gb",
+        "ai_apps_gb", "chatgpt_gb", "claude_gb", "gemini_gb",
+        "gaming_gb",
+      ],
     },
   },
 ];
@@ -118,6 +162,54 @@ export function runTool(
         subscription: sub.name,
       },
       nextBill,
+    };
+  }
+
+  if (name === "get_usage_profile") {
+    return { result: demoUsageProfile(), nextBill: bill };
+  }
+
+  if (name === "recommend_plan") {
+    const usage = {
+      social_media_gb: Number(args.social_media_gb) || 0,
+      tiktok_gb: Number(args.tiktok_gb) || 0,
+      instagram_gb: Number(args.instagram_gb) || 0,
+      video_streaming_gb: Number(args.video_streaming_gb) || 0,
+      youtube_gb: Number(args.youtube_gb) || 0,
+      netflix_gb: Number(args.netflix_gb) || 0,
+      communication_gb: Number(args.communication_gb) || 0,
+      whatsapp_gb: Number(args.whatsapp_gb) || 0,
+      collaboration_gb: Number(args.collaboration_gb) || 0,
+      teams_gb: Number(args.teams_gb) || 0,
+      ai_apps_gb: Number(args.ai_apps_gb) || 0,
+      chatgpt_gb: Number(args.chatgpt_gb) || 0,
+      claude_gb: Number(args.claude_gb) || 0,
+      gemini_gb: Number(args.gemini_gb) || 0,
+      gaming_gb: Number(args.gaming_gb) || 0,
+    };
+    const rec = recommendPlan(usage);
+    if ("error" in rec) {
+      return { result: { ok: false, error: rec.error }, nextBill: bill };
+    }
+    const totalGb = Object.values(usage).length
+      ? usage.social_media_gb + usage.video_streaming_gb + usage.communication_gb +
+        usage.collaboration_gb + usage.ai_apps_gb + usage.gaming_gb
+      : 0;
+    const existing = cheapestExistingOffer(totalGb);
+    return {
+      result: {
+        ok: true,
+        persona: rec.persona,
+        confidencePct: Math.round(rec.confidence * 1000) / 10,
+        tier: rec.tier,
+        recommendedPackage: rec.package,
+        comparison: {
+          cheapestExistingOfferAzn: existing.priceAzn,
+          existingOfferSource: existing.source,
+          savingsAzn: Math.round((existing.priceAzn - rec.package.priceAzn) * 100) / 100,
+        },
+      },
+      nextBill: bill,
     };
   }
 

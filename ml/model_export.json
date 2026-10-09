@@ -1,0 +1,610 @@
+{
+  "feature_columns": [
+    "log_social_media_gb",
+    "share_social_media_gb",
+    "log_video_streaming_gb",
+    "share_video_streaming_gb",
+    "log_communication_gb",
+    "share_communication_gb",
+    "log_collaboration_gb",
+    "share_collaboration_gb",
+    "log_ai_apps_gb",
+    "share_ai_apps_gb",
+    "log_gaming_gb",
+    "share_gaming_gb",
+    "yt_vs_netflix",
+    "tiktok_vs_instagram"
+  ],
+  "scaler_mean": [
+    1.2063851996882917,
+    0.18772774298324363,
+    1.768997373518865,
+    0.3676580304564334,
+    1.0191663531578203,
+    0.14971641075206002,
+    0.5511574830301632,
+    0.07752657793564842,
+    0.578397076454163,
+    0.09261707988006679,
+    0.7871349440772086,
+    0.1247541579925477,
+    0.5773244958373777,
+    0.5411529664608203
+  ],
+  "scaler_scale": [
+    0.5717532394731847,
+    0.1868812411123496,
+    0.9503501489645256,
+    0.291736277546527,
+    0.5102396216067823,
+    0.1705245054314708,
+    0.6547615582195111,
+    0.1467059481108629,
+    0.820621188782955,
+    0.19601879860067403,
+    1.0360506176757847,
+    0.24782559534431825,
+    0.16997839457387628,
+    0.13521695901634254
+  ],
+  "classes": [
+    "AI power user",
+    "Everyday all-rounder",
+    "Gamer",
+    "Heavy Video streamer (YouTube)",
+    "Light user",
+    "Messaging-first (WhatsApp)",
+    "Remote worker (Teams/Zoom)",
+    "Social scroller (Instagram)",
+    "Social scroller (TikTok)",
+    "Video streamer (Netflix)"
+  ],
+  "coef": [
+    [
+      -0.1965938765636537,
+      -0.6039547128075641,
+      -0.18644816776304401,
+      -0.7181367589846908,
+      0.0718983642956229,
+      -0.48242803257077455,
+      0.586222226638276,
+      -0.15214148012738177,
+      2.5490349170606104,
+      2.522910763319508,
+      -0.24402367809337616,
+      -0.2726825847772984,
+      0.4388905118727987,
+      -0.0010716235438808382
+    ],
+    [
+      0.6943237804209114,
+      0.4056784090898359,
+      -0.3270575380317676,
+      -0.07601638324513152,
+      0.9656481207230143,
+      0.11042258313189252,
+      1.4440151170986752,
+      -0.2541424981096482,
+      1.0265038698742646,
+      -0.4003513837226161,
+      1.538117205409398,
+      0.174695067537213,
+      0.532897762087182,
+      0.1260199686812332
+    ],
+    [
+      0.07943150613132695,
+      -0.603844220877332,
+      -0.26484177151913507,
+      -0.8442318404608194,
+      -0.3504523730740145,
+      -0.6399009249126604,
+      -0.6813807594846214,
+      -0.4821463648835098,
+      -0.30781087881977365,
+      -0.280862611873451,
+      2.1726512831216023,
+      2.39703688078957,
+      0.14265903993789764,
+      0.07079109207002379
+    ],
+    [
+      0.10851336744943216,
+      -1.1521363201847266,
+      2.210546619288059,
+      2.5730301814998326,
+      -0.5387942362768574,
+      -1.4823993259701302,
+      -1.2436106931443802,
+      -0.8928638465240315,
+      -0.48322466646888595,
+      -0.5516678780503923,
+      0.7216906293661919,
+      -0.17521377453090606,
+      1.8967832046570712,
+      -0.21675678484093008
+    ],
+    [
+      -1.9145443000452884,
+      0.6143165736033924,
+      -1.8649328291345943,
+      0.21498089663567183,
+      -2.278447479409855,
+      0.005471096067824657,
+      -1.096069303467204,
+      -0.17925130883503987,
+      -0.7608967304008295,
+      -0.20218948539831136,
+      -1.129646169877586,
+      -0.454048149480152,
+      0.016303212368466505,
+      -0.06497470218012481
+    ],
+    [
+      -0.7007119901282239,
+      -0.797514117127797,
+      -1.124699301394979,
+      -1.0882203858063986,
+      2.060812423463916,
+      3.630135250657415,
+      -0.31160563748727127,
+      -0.3387676680881003,
+      -0.3444626910297416,
+      -0.15020494966640527,
+      -0.6122646406793221,
+      -0.29605900848636835,
+      0.2786337721712855,
+      -0.046750731370821974
+    ],
+    [
+      -0.8457277071244159,
+      -0.9723914168797375,
+      -0.24128599204964202,
+      -0.7738594761135146,
+      1.2513507524814609,
+      0.43595188202295543,
+      3.4169311690630546,
+      3.3867957902502903,
+      0.4479061760408785,
+      -0.22060792248096348,
+      -0.7325388533985572,
+      -0.486130856288653,
+      0.20308675034837775,
+      0.0355033711010662
+    ],
+    [
+      1.3361989808743036,
+      2.1643619728765424,
+      -0.1748761037818026,
+      -0.45645555616933325,
+      -0.31766072528846545,
+      -0.547748232065335,
+      -0.8821270604620798,
+      -0.4662063978173195,
+      -0.7351605311504978,
+      -0.3202016689909629,
+      -0.40866599687951094,
+      -0.1886355296503471,
+      0.6127763023186849,
+      -2.1783612692547227
+    ],
+    [
+      2.128305463377575,
+      1.8643314982317292,
+      0.2376499539589625,
+      -0.43038455570597234,
+      -0.4553369552220821,
+      -0.29172242198289644,
+      -0.5559915274974523,
+      -0.34932488606057094,
+      -0.7618028023290272,
+      -0.2993472314948915,
+      -0.3553966578934714,
+      -0.25493029051027755,
+      0.5385725438627922,
+      2.5222593678811074
+    ],
+    [
+      -0.6891952243919671,
+      -0.9188476659243476,
+      1.7359451304279478,
+      1.5992938783503605,
+      -0.40901789169273517,
+      -0.7377818743782881,
+      -0.6763835312569993,
+      -0.2719513398046937,
+      -0.6300866627769992,
+      -0.09747763164151615,
+      -0.9499231210753624,
+      -0.4440317546027852,
+      -4.660603099624551,
+      -0.24665868854295542
+    ]
+  ],
+  "intercept": [
+    0.19276615464238903,
+    5.857934953319356,
+    -0.01162742714358703,
+    2.581534908137559,
+    1.2637201079174236,
+    -2.532004119190516,
+    -0.9885800776760507,
+    -1.9721129794709706,
+    -2.1895560176433375,
+    -2.202075502892217
+  ],
+  "packages": {
+    "AI power user::S": {
+      "persona": "AI power user",
+      "tier": "S",
+      "total_gb": 22.14,
+      "buckets_gb": {
+        "social_media_gb": 2.76,
+        "video_streaming_gb": 4.2,
+        "communication_gb": 2.2,
+        "collaboration_gb": 2.41,
+        "ai_apps_gb": 14.09
+      },
+      "general_pool_gb": 0.0,
+      "price_azn": 26.68
+    },
+    "AI power user::M": {
+      "persona": "AI power user",
+      "tier": "M",
+      "total_gb": 29.68,
+      "buckets_gb": {
+        "social_media_gb": 3.19,
+        "video_streaming_gb": 4.9,
+        "communication_gb": 2.52,
+        "collaboration_gb": 2.63,
+        "ai_apps_gb": 21.56
+      },
+      "general_pool_gb": 0.0,
+      "price_azn": 26.68
+    },
+    "AI power user::L": {
+      "persona": "AI power user",
+      "tier": "L",
+      "total_gb": 48.8,
+      "buckets_gb": {
+        "social_media_gb": 3.07,
+        "video_streaming_gb": 5.4,
+        "communication_gb": 2.7,
+        "collaboration_gb": 2.6,
+        "ai_apps_gb": 39.91
+      },
+      "general_pool_gb": 0.0,
+      "price_azn": 35.88
+    },
+    "Everyday all-rounder::S": {
+      "persona": "Everyday all-rounder",
+      "tier": "S",
+      "total_gb": 15.23,
+      "buckets_gb": {
+        "social_media_gb": 4.36,
+        "video_streaming_gb": 5.24,
+        "communication_gb": 3.46,
+        "gaming_gb": 2.42
+      },
+      "general_pool_gb": 0.0,
+      "price_azn": 23.03
+    },
+    "Everyday all-rounder::M": {
+      "persona": "Everyday all-rounder",
+      "tier": "M",
+      "total_gb": 18.86,
+      "buckets_gb": {
+        "social_media_gb": 5.94,
+        "video_streaming_gb": 7.0,
+        "communication_gb": 4.65,
+        "collaboration_gb": 2.27,
+        "gaming_gb": 3.42
+      },
+      "general_pool_gb": 0.0,
+      "price_azn": 25.63
+    },
+    "Everyday all-rounder::L": {
+      "persona": "Everyday all-rounder",
+      "tier": "L",
+      "total_gb": 26.13,
+      "buckets_gb": {
+        "social_media_gb": 8.77,
+        "video_streaming_gb": 10.37,
+        "communication_gb": 6.27,
+        "collaboration_gb": 2.49,
+        "gaming_gb": 4.1
+      },
+      "general_pool_gb": 0.0,
+      "price_azn": 26.68
+    },
+    "Gamer::S": {
+      "persona": "Gamer",
+      "tier": "S",
+      "total_gb": 42.09,
+      "buckets_gb": {
+        "social_media_gb": 2.89,
+        "video_streaming_gb": 4.28,
+        "gaming_gb": 35.68
+      },
+      "general_pool_gb": 0.0,
+      "price_azn": 35.88
+    },
+    "Gamer::M": {
+      "persona": "Gamer",
+      "tier": "M",
+      "total_gb": 59.69,
+      "buckets_gb": {
+        "social_media_gb": 3.28,
+        "video_streaming_gb": 4.73,
+        "gaming_gb": 53.07
+      },
+      "general_pool_gb": 0.0,
+      "price_azn": 45.6
+    },
+    "Gamer::L": {
+      "persona": "Gamer",
+      "tier": "L",
+      "total_gb": 93.5,
+      "buckets_gb": {
+        "social_media_gb": 2.94,
+        "video_streaming_gb": 5.35,
+        "gaming_gb": 87.89
+      },
+      "general_pool_gb": 0.0,
+      "price_azn": 57.07
+    },
+    "Heavy Video streamer (YouTube)::S": {
+      "persona": "Heavy Video streamer (YouTube)",
+      "tier": "S",
+      "total_gb": 23.14,
+      "buckets_gb": {
+        "social_media_gb": 4.04,
+        "video_streaming_gb": 17.04,
+        "communication_gb": 2.43
+      },
+      "general_pool_gb": 0.0,
+      "price_azn": 26.68
+    },
+    "Heavy Video streamer (YouTube)::M": {
+      "persona": "Heavy Video streamer (YouTube)",
+      "tier": "M",
+      "total_gb": 32.65,
+      "buckets_gb": {
+        "social_media_gb": 5.2,
+        "video_streaming_gb": 25.96,
+        "communication_gb": 2.79
+      },
+      "general_pool_gb": 0.0,
+      "price_azn": 33.73
+    },
+    "Heavy Video streamer (YouTube)::L": {
+      "persona": "Heavy Video streamer (YouTube)",
+      "tier": "L",
+      "total_gb": 58.85,
+      "buckets_gb": {
+        "social_media_gb": 5.41,
+        "video_streaming_gb": 51.48,
+        "communication_gb": 3.28
+      },
+      "general_pool_gb": 0.0,
+      "price_azn": 45.28
+    },
+    "Light user::S": {
+      "persona": "Light user",
+      "tier": "S",
+      "total_gb": 2.63,
+      "buckets_gb": {},
+      "general_pool_gb": 2.63,
+      "price_azn": 8.28
+    },
+    "Light user::M": {
+      "persona": "Light user",
+      "tier": "M",
+      "total_gb": 3.23,
+      "buckets_gb": {},
+      "general_pool_gb": 3.23,
+      "price_azn": 9.47
+    },
+    "Light user::L": {
+      "persona": "Light user",
+      "tier": "L",
+      "total_gb": 5.03,
+      "buckets_gb": {
+        "social_media_gb": 2.05,
+        "video_streaming_gb": 2.35
+      },
+      "general_pool_gb": 0.63,
+      "price_azn": 11.04
+    },
+    "Messaging-first (WhatsApp)::S": {
+      "persona": "Messaging-first (WhatsApp)",
+      "tier": "S",
+      "total_gb": 9.37,
+      "buckets_gb": {
+        "video_streaming_gb": 2.11,
+        "communication_gb": 5.61
+      },
+      "general_pool_gb": 1.65,
+      "price_azn": 16.56
+    },
+    "Messaging-first (WhatsApp)::M": {
+      "persona": "Messaging-first (WhatsApp)",
+      "tier": "M",
+      "total_gb": 12.49,
+      "buckets_gb": {
+        "social_media_gb": 2.47,
+        "video_streaming_gb": 2.16,
+        "communication_gb": 8.65
+      },
+      "general_pool_gb": 0.0,
+      "price_azn": 20.86
+    },
+    "Messaging-first (WhatsApp)::L": {
+      "persona": "Messaging-first (WhatsApp)",
+      "tier": "L",
+      "total_gb": 20.19,
+      "buckets_gb": {
+        "social_media_gb": 2.92,
+        "video_streaming_gb": 3.05,
+        "communication_gb": 15.21
+      },
+      "general_pool_gb": 0.0,
+      "price_azn": 26.52
+    },
+    "Remote worker (Teams/Zoom)::S": {
+      "persona": "Remote worker (Teams/Zoom)",
+      "tier": "S",
+      "total_gb": 15.72,
+      "buckets_gb": {
+        "social_media_gb": 2.19,
+        "video_streaming_gb": 3.0,
+        "communication_gb": 3.98,
+        "collaboration_gb": 7.46,
+        "ai_apps_gb": 2.33
+      },
+      "general_pool_gb": 0.0,
+      "price_azn": 23.4
+    },
+    "Remote worker (Teams/Zoom)::M": {
+      "persona": "Remote worker (Teams/Zoom)",
+      "tier": "M",
+      "total_gb": 20.33,
+      "buckets_gb": {
+        "social_media_gb": 2.59,
+        "video_streaming_gb": 3.85,
+        "communication_gb": 5.12,
+        "collaboration_gb": 11.35,
+        "ai_apps_gb": 2.45
+      },
+      "general_pool_gb": 0.0,
+      "price_azn": 26.61
+    },
+    "Remote worker (Teams/Zoom)::L": {
+      "persona": "Remote worker (Teams/Zoom)",
+      "tier": "L",
+      "total_gb": 30.97,
+      "buckets_gb": {
+        "social_media_gb": 2.76,
+        "video_streaming_gb": 4.86,
+        "communication_gb": 5.96,
+        "collaboration_gb": 20.27,
+        "ai_apps_gb": 2.7
+      },
+      "general_pool_gb": 0.0,
+      "price_azn": 32.85
+    },
+    "Social scroller (Instagram)::S": {
+      "persona": "Social scroller (Instagram)",
+      "tier": "S",
+      "total_gb": 14.66,
+      "buckets_gb": {
+        "social_media_gb": 9.37,
+        "video_streaming_gb": 3.8,
+        "communication_gb": 2.45
+      },
+      "general_pool_gb": 0.0,
+      "price_azn": 22.6
+    },
+    "Social scroller (Instagram)::M": {
+      "persona": "Social scroller (Instagram)",
+      "tier": "M",
+      "total_gb": 18.76,
+      "buckets_gb": {
+        "social_media_gb": 13.45,
+        "video_streaming_gb": 4.65,
+        "communication_gb": 2.37
+      },
+      "general_pool_gb": 0.0,
+      "price_azn": 25.56
+    },
+    "Social scroller (Instagram)::L": {
+      "persona": "Social scroller (Instagram)",
+      "tier": "L",
+      "total_gb": 27.65,
+      "buckets_gb": {
+        "social_media_gb": 21.58,
+        "video_streaming_gb": 5.4,
+        "communication_gb": 2.63
+      },
+      "general_pool_gb": 0.0,
+      "price_azn": 26.68
+    },
+    "Social scroller (TikTok)::S": {
+      "persona": "Social scroller (TikTok)",
+      "tier": "S",
+      "total_gb": 14.61,
+      "buckets_gb": {
+        "social_media_gb": 9.91,
+        "video_streaming_gb": 3.94,
+        "communication_gb": 2.06
+      },
+      "general_pool_gb": 0.0,
+      "price_azn": 22.56
+    },
+    "Social scroller (TikTok)::M": {
+      "persona": "Social scroller (TikTok)",
+      "tier": "M",
+      "total_gb": 18.75,
+      "buckets_gb": {
+        "social_media_gb": 12.98,
+        "video_streaming_gb": 5.45,
+        "communication_gb": 2.9
+      },
+      "general_pool_gb": 0.0,
+      "price_azn": 25.56
+    },
+    "Social scroller (TikTok)::L": {
+      "persona": "Social scroller (TikTok)",
+      "tier": "L",
+      "total_gb": 31.96,
+      "buckets_gb": {
+        "social_media_gb": 23.14,
+        "video_streaming_gb": 5.86,
+        "communication_gb": 2.56
+      },
+      "general_pool_gb": 0.4,
+      "price_azn": 33.37
+    },
+    "Video streamer (Netflix)::S": {
+      "persona": "Video streamer (Netflix)",
+      "tier": "S",
+      "total_gb": 19.97,
+      "buckets_gb": {
+        "social_media_gb": 2.87,
+        "video_streaming_gb": 15.57,
+        "communication_gb": 2.35
+      },
+      "general_pool_gb": 0.0,
+      "price_azn": 26.38
+    },
+    "Video streamer (Netflix)::M": {
+      "persona": "Video streamer (Netflix)",
+      "tier": "M",
+      "total_gb": 27.49,
+      "buckets_gb": {
+        "social_media_gb": 3.38,
+        "video_streaming_gb": 22.91,
+        "communication_gb": 2.45
+      },
+      "general_pool_gb": 0.0,
+      "price_azn": 26.68
+    },
+    "Video streamer (Netflix)::L": {
+      "persona": "Video streamer (Netflix)",
+      "tier": "L",
+      "total_gb": 49.76,
+      "buckets_gb": {
+        "social_media_gb": 3.83,
+        "video_streaming_gb": 44.82,
+        "communication_gb": 2.6
+      },
+      "general_pool_gb": 0.0,
+      "price_azn": 35.88
+    }
+  },
+  "tier_order": [
+    "S",
+    "M",
+    "L"
+  ]
+}
