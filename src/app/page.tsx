@@ -1,67 +1,127 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
+import { initialBillState, type BillState } from "@/lib/mockBill";
+
+type ChatMessage = { role: "user" | "assistant"; text: string };
 
 export default function Home() {
+  const [bill, setBill] = useState<BillState>(initialBillState());
+  const [apiHistory, setApiHistory] = useState<unknown[]>([]);
+  const [messages, setMessages] = useState<ChatMessage[]>([
+    {
+      role: "assistant",
+      text: "Salam! Mən Aydın-am, hesabınızla bağlı köməkçiyəm. Balans və ya abunəliklərlə bağlı sualınız var?",
+    },
+  ]);
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  async function send() {
+    if (!input.trim() || loading) return;
+    const userText = input.trim();
+    setInput("");
+    setMessages((m) => [...m, { role: "user", text: userText }]);
+    setLoading(true);
+
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ message: userText, history: apiHistory, bill }),
+      });
+      const data = await res.json();
+
+      if (data.error) {
+        setMessages((m) => [...m, { role: "assistant", text: "Xəta: " + data.error }]);
+      } else {
+        setApiHistory(data.history);
+        setBill(data.bill);
+        setMessages((m) => [...m, { role: "assistant", text: data.reply }]);
+      }
+    } catch {
+      setMessages((m) => [
+        ...m,
+        { role: "assistant", text: "Şəbəkə xətası baş verdi. Yenidən cəhd edin." },
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="min-h-screen bg-neutral-50 text-neutral-900 flex flex-col md:flex-row">
+      <aside className="w-full md:w-80 border-b md:border-b-0 md:border-r border-neutral-200 p-4 bg-white">
+        <h2 className="font-semibold text-lg mb-1">Aydın</h2>
+        <p className="text-sm text-neutral-500 mb-4">Hesab icmalı</p>
+
+        <div className="mb-4">
+          <div className="text-xs text-neutral-500">Balans</div>
+          <div className="text-2xl font-semibold">{bill.balanceAzn.toFixed(2)} AZN</div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+        <div className="text-xs text-neutral-500 mb-2">Abunəliklər</div>
+        <ul className="space-y-2">
+          {bill.subscriptions.map((s) => (
+            <li
+              key={s.id}
+              className={`rounded-lg border p-3 ${
+                s.status === "cancelled"
+                  ? "border-neutral-200 bg-neutral-100 opacity-60"
+                  : "border-amber-200 bg-amber-50"
+              }`}
+            >
+              <div className="flex justify-between items-start">
+                <span className="font-medium text-sm">{s.name}</span>
+                <span className="text-sm whitespace-nowrap">
+                  {s.amountAzn} AZN/{s.period === "daily" ? "gün" : "ay"}
+                </span>
+              </div>
+              <div className="text-xs text-neutral-500 mt-1">{s.description}</div>
+              <div className="mt-1 text-xs font-medium">
+                {s.status === "cancelled" ? "✓ Ləğv edilib" : "Aktiv"}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </aside>
+
+      <main className="flex-1 flex flex-col">
+        <div className="flex-1 overflow-y-auto p-4 space-y-3">
+          {messages.map((m, i) => (
+            <div
+              key={i}
+              className={`max-w-xl rounded-2xl px-4 py-2 ${
+                m.role === "user"
+                  ? "bg-neutral-900 text-white ml-auto"
+                  : "bg-white border border-neutral-200"
+              }`}
+            >
+              {m.text}
+            </div>
+          ))}
+          {loading && (
+            <div className="max-w-xl rounded-2xl px-4 py-2 bg-white border border-neutral-200 text-neutral-400">
+              yazır…
+            </div>
+          )}
+        </div>
+
+        <div className="p-4 border-t border-neutral-200 bg-white flex gap-2">
+          <input
+            className="flex-1 rounded-full border border-neutral-300 px-4 py-2 outline-none focus:border-neutral-500"
+            placeholder="Mesajınızı yazın…"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && send()}
+          />
+          <button
+            onClick={send}
+            disabled={loading}
+            className="rounded-full bg-neutral-900 text-white px-5 py-2 disabled:opacity-40"
           >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            Göndər
+          </button>
         </div>
       </main>
     </div>
