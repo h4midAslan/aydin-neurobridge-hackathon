@@ -2,7 +2,8 @@
 
 An AI assistant that **resolves** unwanted recurring subscription charges end-to-end, in Azerbaijani — not just explains them. Built for NeuroBridge.SI Baku 2026 (AI Enterprise Solutions track).
 
-**Live demo:** https://aydin-self.vercel.app
+**Landing page:** https://aydin-self.vercel.app
+**Live interactive demo:** https://aydin-self.vercel.app/console
 
 ## Setup
 
