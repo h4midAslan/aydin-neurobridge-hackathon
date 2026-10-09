@@ -338,18 +338,10 @@ export default function AydinConsole() {
                 <p className="mt-1 truncate text-sm text-[#8a9096]" aria-live="polite">{status}</p>
               </div>
             </div>
-            <div className="flex items-center gap-3 shrink-0">
-              <p className="text-sm tabular-nums text-[#8a9096]">
-                {resolved ? "Həll olundu — " : ""}
-                <span className="font-bold text-white">{mmss(elapsed)}</span>
-              </p>
-              <Link
-                href="/paketler"
-                className="rounded-full border border-[#2f3336] px-3 py-1.5 text-xs font-bold text-[#8a9096] transition hover:border-[#f5b73a] hover:text-[#f5b73a]"
-              >
-                Tariflər
-              </Link>
-            </div>
+            <p className="text-sm tabular-nums text-[#8a9096] shrink-0">
+              {resolved ? "Həll olundu — " : ""}
+              <span className="font-bold text-white">{mmss(elapsed)}</span>
+            </p>
           </header>
 
           {resolved && flaggedSub && (
@@ -406,6 +398,14 @@ export default function AydinConsole() {
                 <ServiceRow key={s.id} sub={s} onStop={() => stopCharge(s)} />
               ))}
             </ul>
+            <div className="px-4 py-5">
+              <Link
+                href="/paketler"
+                className="text-sm text-[#8a9096] hover:text-[#f5b73a] transition-colors"
+              >
+                Mənə uyğun tarif seç et →
+              </Link>
+            </div>
           </section>
         </div>
 

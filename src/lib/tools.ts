@@ -1,4 +1,5 @@
 import type { BillState } from "./mockBill";
+import { demoUsageProfile } from "./usageProfile";
 import { recommendPlan, cheapestExistingOffer } from "./tariff/recommend";
 
 export const toolDefinitions = [
@@ -47,9 +48,18 @@ export const toolDefinitions = [
     },
   },
   {
+    name: "get_usage_profile",
+    description:
+      "İstifadəçinin son 30 gündə mobil internetini hansı tətbiqlərdə işlətdiyini qaytarır. Müştəri istifadə vərdişlərini özü TƏSVİR ETMƏYİBSƏ, tarif tövsiyəsindən əvvəl bunu çağır.",
+    input_schema: {
+      type: "object",
+      properties: {},
+    },
+  },
+  {
     name: "recommend_plan",
     description:
-      "Müştərinin söhbətdə TƏSVİR ETDİYİ istifadə vərdişlərinə (məsələn 'çox PUBG oynayıram', 'əsasən Netflix izləyirəm', 'evdən Zoom-la işləyirəm') əsasən SƏN ÖZÜN hər sahə üçün ağlabatan GB dəyəri təxmin et və bu funksiyaya ötür. Real ölçmə deyil, söhbətdən çıxardığın məntiqli təxmindir — dominant sahəyə yüksək, qalanlarına təbii/aşağı dəyərlər ver. Ən uyğun yeni tarif paketini və qiymətini qaytarır.",
+      "Ən uyğun yeni tarif paketini və qiymətini qaytarır. Əgər müştəri istifadə vərdişlərini söhbətdə TƏSVİR EDİBSƏ (məsələn 'çox PUBG oynayıram'), SƏN ÖZÜN hər sahə üçün ağlabatan GB dəyəri təxmin edib birbaşa buraya ötür. Əks halda, əvvəlcə get_usage_profile çağır və onun dəyərlərini olduğu kimi buraya ötür.",
     input_schema: {
       type: "object",
       properties: {
@@ -155,6 +165,10 @@ export function runTool(
     };
   }
 
+  if (name === "get_usage_profile") {
+    return { result: demoUsageProfile(), nextBill: bill };
+  }
+
   if (name === "recommend_plan") {
     const usage = {
       social_media_gb: Number(args.social_media_gb) || 0,
@@ -186,13 +200,21 @@ export function runTool(
       result: {
         ok: true,
         persona: rec.persona,
-        confidencePct: Math.round(rec.confidence * 1000) / 10,
+        confidencePct: Math.round(rec.confidence * 100),
         tier: rec.tier,
-        recommendedPackage: rec.package,
+        recommendedPackage: {
+          ...rec.package,
+          totalGb: Math.round(rec.package.totalGb),
+          priceAzn: Math.round(rec.package.priceAzn),
+          buckets: Object.fromEntries(
+            Object.entries(rec.package.buckets).map(([k, v]) => [k, Math.round(v)])
+          ),
+          generalPoolGb: Math.round(rec.package.generalPoolGb),
+        },
         comparison: {
-          cheapestExistingOfferAzn: existing.priceAzn,
+          cheapestExistingOfferAzn: Math.round(existing.priceAzn),
           existingOfferSource: existing.source,
-          savingsAzn: Math.round((existing.priceAzn - rec.package.priceAzn) * 100) / 100,
+          savingsAzn: Math.round(existing.priceAzn - rec.package.priceAzn),
         },
       },
       nextBill: bill,

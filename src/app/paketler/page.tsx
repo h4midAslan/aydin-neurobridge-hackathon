@@ -56,7 +56,7 @@ export default function PaketlerPage() {
   const rec = recommendPlan(usage);
   const recommended = "error" in rec ? null : rec;
   const existing = recommended ? cheapestExistingOffer(recommended.totalGbUsed) : null;
-  const savings = recommended && existing ? Math.round((existing.priceAzn - recommended.package.priceAzn) * 100) / 100 : 0;
+  const savings = recommended && existing ? Math.round(existing.priceAzn - recommended.package.priceAzn) : 0;
 
   const dominantBucket = recommended
     ? Object.entries(recommended.package.buckets).sort((a, b) => b[1] - a[1])[0]
@@ -80,6 +80,53 @@ export default function PaketlerPage() {
       </header>
 
       <main className="max-w-5xl mx-auto px-6 py-12">
+        {recommended && existing && (
+          <section className="mb-16">
+            <div className="rounded-2xl border border-[#f5b73a]/60 bg-[#f5b73a]/5 p-6 sm:p-8">
+              <div className="text-xs font-bold tracking-wide text-[#f5b73a] mb-2">
+                SİZƏ TÖVSİYƏ
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+                {PERSONA_AZ[recommended.persona] ?? recommended.persona} — {TIER_LABEL[recommended.tier]}
+              </h2>
+              <div className="mt-4 flex items-baseline gap-4">
+                <span className="text-4xl font-extrabold tracking-tight">
+                  {recommended.package.totalGb} GB
+                </span>
+                <span className="text-2xl font-bold text-[#f5b73a]">
+                  {recommended.package.priceAzn} AZN
+                </span>
+              </div>
+
+              <ul className="mt-6 flex flex-col gap-2.5 text-sm text-[#e7e9ea]">
+                {dominantBucket && (
+                  <li className="flex items-start gap-2">
+                    <span className="text-[#f5b73a] mt-0.5">✓</span>
+                    {dominantBucket[1]} GB xüsusi olaraq {(BUCKET_AZ[dominantBucket[0]] ?? dominantBucket[0]).toLowerCase()}{" "}
+                    üçün ayrılıb.
+                  </li>
+                )}
+                <li className="flex items-start gap-2">
+                  <span className="text-[#f5b73a] mt-0.5">✓</span>
+                  Mövcud ən ucuz oxşar tarif {existing.priceAzn} AZN-dir
+                  {savings > 0 ? (
+                    <> — bu paketlə {savings} AZN qənaət edirsiniz.</>
+                  ) : (
+                    <>.</>
+                  )}
+                </li>
+              </ul>
+
+              <Link
+                href="/console"
+                className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#f5b73a] px-5 py-2.5 text-sm font-bold text-black transition hover:bg-[#ffc757]"
+              >
+                Bu tarifə keçmək istəyirəm →
+              </Link>
+            </div>
+          </section>
+        )}
+
         <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">Bütün tariflər</h1>
         <p className="mt-3 text-[#8a9096] max-w-xl">
           30 fərdiləşdirilmiş paket, 10 istifadə profilinə görə qruplaşdırılıb. Hər profil üçün 3
@@ -102,13 +149,17 @@ export default function PaketlerPage() {
                       </span>
                       <span className="text-xs text-[#536471]">{pkg.tier}</span>
                     </div>
-                    <div className="text-2xl font-extrabold tracking-tight">{pkg.total_gb} GB</div>
-                    <div className="text-lg font-bold text-[#f5b73a]">{pkg.price_azn} AZN</div>
+                    <div className="text-2xl font-extrabold tracking-tight">
+                      {Math.round(pkg.total_gb)} GB
+                    </div>
+                    <div className="text-lg font-bold text-[#f5b73a]">
+                      {Math.round(pkg.price_azn)} AZN
+                    </div>
                     {Object.keys(pkg.buckets_gb).length > 0 && (
                       <ul className="mt-1 flex flex-col gap-1 text-xs text-[#8a9096]">
                         {Object.entries(pkg.buckets_gb).map(([k, v]) => (
                           <li key={k}>
-                            {BUCKET_AZ[k] ?? k}: {v} GB
+                            {BUCKET_AZ[k] ?? k}: {Math.round(v)} GB
                           </li>
                         ))}
                       </ul>
@@ -119,65 +170,6 @@ export default function PaketlerPage() {
             </section>
           ))}
         </div>
-
-        {recommended && existing && (
-          <section className="mt-16 pt-10 border-t border-[#2f3336]">
-            <div className="rounded-2xl border border-[#f5b73a]/60 bg-[#f5b73a]/5 p-6 sm:p-8">
-              <div className="text-xs font-bold tracking-wide text-[#f5b73a] mb-2">
-                NÜMUNƏ TÖVSİYƏ — "{PERSONA_AZ[recommended.persona] ?? recommended.persona}" PROFİLİ ÜÇÜN
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-                {PERSONA_AZ[recommended.persona] ?? recommended.persona} — {TIER_LABEL[recommended.tier]}
-              </h2>
-              <p className="mt-2 text-sm text-[#8a9096] max-w-xl">
-                Bu, sistemin necə işlədiyini göstərən bir nümunədir — sizin öz profiliniz üçün{" "}
-                <Link href="/console" className="text-[#f5b73a] hover:underline">
-                  canlı söhbətdə
-                </Link>{" "}
-                istifadə vərdişlərinizi təsvir edin, Aydın real vaxtda uyğun paketi tapsın.
-              </p>
-              <div className="mt-4 flex items-baseline gap-4">
-                <span className="text-4xl font-extrabold tracking-tight">
-                  {recommended.package.totalGb} GB
-                </span>
-                <span className="text-2xl font-bold text-[#f5b73a]">
-                  {recommended.package.priceAzn} AZN
-                </span>
-              </div>
-
-              <ul className="mt-6 flex flex-col gap-2.5 text-sm text-[#e7e9ea]">
-                <li className="flex items-start gap-2">
-                  <span className="text-[#f5b73a] mt-0.5">✓</span>
-                  Nümunə profil ({Math.round(recommended.confidence * 1000) / 10}% model əminliyi)
-                  təsvir olunan istifadə vərdişlərinə əsasən avtomatik müəyyən edilir.
-                </li>
-                {dominantBucket && (
-                  <li className="flex items-start gap-2">
-                    <span className="text-[#f5b73a] mt-0.5">✓</span>
-                    {dominantBucket[1]} GB xüsusi olaraq {(BUCKET_AZ[dominantBucket[0]] ?? dominantBucket[0]).toLowerCase()}{" "}
-                    üçün ayrılıb — bu profildə ən çox istifadə olunan sahə.
-                  </li>
-                )}
-                <li className="flex items-start gap-2">
-                  <span className="text-[#f5b73a] mt-0.5">✓</span>
-                  Mövcud ən ucuz oxşar tarif {existing.priceAzn} AZN-dir
-                  {savings > 0 ? (
-                    <> — bu paketlə {savings} AZN qənaət edirsiniz.</>
-                  ) : savings < 0 ? (
-                    <> — bu konkret halda mövcud tarif {Math.abs(savings)} AZN daha sərfəlidir.</>
-                  ) : (
-                    <>.</>
-                  )}
-                </li>
-              </ul>
-
-              <p className="mt-6 text-xs text-[#536471]">
-                Qeyd: bu tövsiyə sintetik istifadə datasına və fərziyyələrə əsaslanan bir prototip
-                hesablamadır.
-              </p>
-            </div>
-          </section>
-        )}
       </main>
     </div>
   );

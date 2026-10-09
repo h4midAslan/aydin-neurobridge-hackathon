@@ -48,11 +48,8 @@ export default function LandingPage() {
 
       <div className="max-w-5xl mx-auto px-6">
         {/* Hero */}
-        <header className="pt-10 pb-2 flex items-center justify-between">
+        <header className="pt-10 pb-2">
           <span className="text-xl font-extrabold tracking-tight">Aydın</span>
-          <Link href="/paketler" className="text-sm text-[#8a9096] hover:text-white transition-colors">
-            Tariflər
-          </Link>
         </header>
 
         <section className="py-10 sm:py-16 grid sm:grid-cols-2 gap-10 items-center">
@@ -66,12 +63,20 @@ export default function LandingPage() {
               Aydın, telekommunikasiya üzrə ödəniş ixtilaflarını sizin üçün həll edən süni
               intellekt assistentidir.
             </p>
-            <Link
-              href="/console"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#f5b73a] px-6 py-3.5 text-base font-bold text-black transition hover:bg-[#ffc757]"
-            >
-              Canlı demonu sına <span aria-hidden="true">→</span>
-            </Link>
+            <div className="mt-8 flex flex-col gap-3 max-w-xs">
+              <Link
+                href="/console"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#f5b73a] px-6 py-3.5 text-base font-bold text-black transition hover:bg-[#ffc757]"
+              >
+                Dərdini mənə danış <span aria-hidden="true">→</span>
+              </Link>
+              <Link
+                href="/paketler"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-[#2f3336] px-6 py-3.5 text-base font-bold text-white transition hover:border-[#536471]"
+              >
+                Mənə uyğun tarif seç et
+              </Link>
+            </div>
           </div>
 
           <div className="flex items-center justify-center py-8">
