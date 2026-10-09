@@ -124,11 +124,18 @@ export default function PaketlerPage() {
           <section className="mt-16 pt-10 border-t border-[#2f3336]">
             <div className="rounded-2xl border border-[#f5b73a]/60 bg-[#f5b73a]/5 p-6 sm:p-8">
               <div className="text-xs font-bold tracking-wide text-[#f5b73a] mb-2">
-                SİZİN ÜÇÜN ƏN YAXŞI SEÇİM
+                NÜMUNƏ TÖVSİYƏ — "{PERSONA_AZ[recommended.persona] ?? recommended.persona}" PROFİLİ ÜÇÜN
               </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
                 {PERSONA_AZ[recommended.persona] ?? recommended.persona} — {TIER_LABEL[recommended.tier]}
               </h2>
+              <p className="mt-2 text-sm text-[#8a9096] max-w-xl">
+                Bu, sistemin necə işlədiyini göstərən bir nümunədir — sizin öz profiliniz üçün{" "}
+                <Link href="/console" className="text-[#f5b73a] hover:underline">
+                  canlı söhbətdə
+                </Link>{" "}
+                istifadə vərdişlərinizi təsvir edin, Aydın real vaxtda uyğun paketi tapsın.
+              </p>
               <div className="mt-4 flex items-baseline gap-4">
                 <span className="text-4xl font-extrabold tracking-tight">
                   {recommended.package.totalGb} GB
@@ -141,14 +148,14 @@ export default function PaketlerPage() {
               <ul className="mt-6 flex flex-col gap-2.5 text-sm text-[#e7e9ea]">
                 <li className="flex items-start gap-2">
                   <span className="text-[#f5b73a] mt-0.5">✓</span>
-                  İstifadə profiliniz ({Math.round(recommended.confidence * 1000) / 10}% uyğunluq) real
-                  datanıza əsasən avtomatik müəyyən edilib.
+                  Nümunə profil ({Math.round(recommended.confidence * 1000) / 10}% model əminliyi)
+                  təsvir olunan istifadə vərdişlərinə əsasən avtomatik müəyyən edilir.
                 </li>
                 {dominantBucket && (
                   <li className="flex items-start gap-2">
                     <span className="text-[#f5b73a] mt-0.5">✓</span>
                     {dominantBucket[1]} GB xüsusi olaraq {(BUCKET_AZ[dominantBucket[0]] ?? dominantBucket[0]).toLowerCase()}{" "}
-                    üçün ayrılıb — ən çox istifadə etdiyiniz sahə.
+                    üçün ayrılıb — bu profildə ən çox istifadə olunan sahə.
                   </li>
                 )}
                 <li className="flex items-start gap-2">

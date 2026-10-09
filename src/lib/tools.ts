@@ -1,5 +1,4 @@
 import type { BillState } from "./mockBill";
-import { demoUsageProfile } from "./usageProfile";
 import { recommendPlan, cheapestExistingOffer } from "./tariff/recommend";
 
 export const toolDefinitions = [
@@ -48,18 +47,9 @@ export const toolDefinitions = [
     },
   },
   {
-    name: "get_usage_profile",
-    description:
-      "İstifadəçinin son 30 gündə mobil internetini hansı tətbiqlərdə işlətdiyini (sosial media, video, rabitə, iş, AI tətbiqləri, oyun) qaytarır. İstifadəçi daha münasib/sərfəli tarif istəyəndə ƏVVƏLCƏ bunu çağır.",
-    input_schema: {
-      type: "object",
-      properties: {},
-    },
-  },
-  {
     name: "recommend_plan",
     description:
-      "get_usage_profile-dan alınan istifadə məlumatına əsasən ən uyğun yeni tarif paketini və qiymətini qaytarır. get_usage_profile-ı ƏVVƏLCƏ çağırmadan bunu çağırma — onun nəticəsindəki dəyərləri olduğu kimi buraya ötür.",
+      "Müştərinin söhbətdə TƏSVİR ETDİYİ istifadə vərdişlərinə (məsələn 'çox PUBG oynayıram', 'əsasən Netflix izləyirəm', 'evdən Zoom-la işləyirəm') əsasən SƏN ÖZÜN hər sahə üçün ağlabatan GB dəyəri təxmin et və bu funksiyaya ötür. Real ölçmə deyil, söhbətdən çıxardığın məntiqli təxmindir — dominant sahəyə yüksək, qalanlarına təbii/aşağı dəyərlər ver. Ən uyğun yeni tarif paketini və qiymətini qaytarır.",
     input_schema: {
       type: "object",
       properties: {
@@ -163,10 +153,6 @@ export function runTool(
       },
       nextBill,
     };
-  }
-
-  if (name === "get_usage_profile") {
-    return { result: demoUsageProfile(), nextBill: bill };
   }
 
   if (name === "recommend_plan") {
