@@ -66,7 +66,7 @@ export default function PaketlerPage() {
     <div className="min-h-screen bg-black text-white [font-family:var(--font-geist-sans)]">
       <header className="border-b border-[#2f3336] px-6 py-5 flex items-center justify-between flex-wrap gap-3">
         <Link href="/" className="text-xl font-extrabold tracking-tight">
-          Aydın
+          Clario
         </Link>
         <div className="flex items-center gap-3">
           <span className="text-sm text-[#8a9096] hidden sm:inline">Başqa probleminiz var?</span>

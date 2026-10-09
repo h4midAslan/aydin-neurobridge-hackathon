@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Aydın — hesabınızı anlayan köməkçi",
+  title: "Clario — hesabınızı anlayan köməkçi",
   description:
-    "Aydın müştərinin hesab və abunəlik problemini Azərbaycan dilində izah edir və birbaşa həll edir.",
+    "Clario müştərinin hesab və abunəlik problemini Azərbaycan dilində izah edir və birbaşa həll edir.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

@@ -23,14 +23,14 @@ const comparison = {
     points: ["Uzun gözləmə müddəti", "Tez-tez eyni məlumatın təkrarı", "Çox vaxt yenə də həll olunmur"],
   },
   new: {
-    label: "Aydın",
+    label: "Clario",
     stat: "Canlı, görünən,\nani həll.",
     points: ["Süni intellekt avtomatik aşkar edir", "Problemi sadə dildə izah edir", "Təsdiqlənsə, ləğv edir və geri ödəyir"],
   },
 };
 
 const steps = [
-  { n: "1", title: "Ödənişi özü aşkar edir", body: "Aydın şübhəli, təkrarlanan ödənişi avtomatik olaraq fərq edir." },
+  { n: "1", title: "Ödənişi özü aşkar edir", body: "Clario şübhəli, təkrarlanan ödənişi avtomatik olaraq fərq edir." },
   { n: "2", title: "Sadə dildə izah edir", body: "Hansı xidmətə aid olduğunu aydın şəkildə sizə başa salır." },
   { n: "3", title: "Təsdiqlənsə, həll edir", body: "İxtilafı ləğv edir və əvvəlki ödənişləri geri qaytarır." },
 ];
@@ -49,7 +49,7 @@ export default function LandingPage() {
       <div className="max-w-5xl mx-auto px-6">
         {/* Hero */}
         <header className="pt-10 pb-2">
-          <span className="text-xl font-extrabold tracking-tight">Aydın</span>
+          <span className="text-xl font-extrabold tracking-tight">Clario</span>
         </header>
 
         <section className="py-10 sm:py-16 grid sm:grid-cols-2 gap-10 items-center">
@@ -60,7 +60,7 @@ export default function LandingPage() {
               problemi bitirir
             </h1>
             <p className="mt-6 text-base sm:text-lg text-[#8a9096] leading-relaxed max-w-md">
-              Aydın, telekommunikasiya üzrə ödəniş ixtilaflarını sizin üçün həll edən süni
+              Clario, telekommunikasiya üzrə ödəniş ixtilaflarını sizin üçün həll edən süni
               intellekt assistentidir.
             </p>
             <div className="mt-8 flex flex-col gap-3 max-w-xs">
@@ -95,7 +95,7 @@ export default function LandingPage() {
             Problemin köhnə və yeni yolu
           </h2>
           <p className="mt-3 text-[#8a9096] max-w-xl">
-            Ənənəvi dəstək sizi saatlarla gözlədir. Aydın problemi sürətli və real şəkildə həll
+            Ənənəvi dəstək sizi saatlarla gözlədir. Clario problemi sürətli və real şəkildə həll
             edir.
           </p>
 
@@ -124,7 +124,7 @@ export default function LandingPage() {
                   <span className="aydin-halo" />
                   <span className="aydin-core" />
                 </span>
-                <span className="font-semibold">Aydın</span>
+                <span className="font-semibold">Clario</span>
               </div>
               <div className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight leading-[1.1] whitespace-pre-line">
                 {comparison.new.stat}

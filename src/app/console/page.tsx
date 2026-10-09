@@ -248,7 +248,7 @@ export default function AydinConsole() {
     }
   }
 
-  /* Aydın notices the charge on its own — a real, silent scan turn. */
+  /* Clario notices the charge on its own — a real, silent scan turn. */
   useEffect(() => {
     if (startedRef.current) return;
     startedRef.current = true;
@@ -334,7 +334,7 @@ export default function AydinConsole() {
             <div className="flex min-w-0 items-center gap-4">
               <Orb mood={mood} size="sm" />
               <div className="min-w-0">
-                <h1 className="text-xl font-extrabold leading-none tracking-tight text-white">Aydın</h1>
+                <h1 className="text-xl font-extrabold leading-none tracking-tight text-white">Clario</h1>
                 <p className="mt-1 truncate text-sm text-[#8a9096]" aria-live="polite">{status}</p>
               </div>
             </div>
@@ -447,7 +447,7 @@ export default function AydinConsole() {
                   <span className="size-2 animate-pulse rounded-full bg-[#8a9096] [animation-delay:500ms]" />
                 </span>
                 <span className="text-base text-[#8a9096]">
-                  {messages.length === 0 ? "Aydın hesabınızı yoxlayır…" : "Aydın bunu həll edir…"}
+                  {messages.length === 0 ? "Clario hesabınızı yoxlayır…" : "Clario bunu həll edir…"}
                 </span>
               </div>
             )}
