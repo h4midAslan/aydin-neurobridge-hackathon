@@ -5,6 +5,7 @@ export type Subscription = {
   period: "daily" | "monthly";
   status: "active" | "cancelled";
   description: string;
+  refundedAzn?: number;
 };
 
 export type BillState = {
