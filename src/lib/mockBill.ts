@@ -6,6 +6,8 @@ export type Subscription = {
   status: "active" | "cancelled";
   description: string;
   refundedAzn?: number;
+  suspicious?: boolean;
+  serviceId?: string;
 };
 
 export type BillState = {
@@ -27,6 +29,8 @@ export function initialBillState(): BillState {
         status: "active",
         description:
           "Üçüncü tərəf məzmun xidməti (oyun/əyləncə). Adətən bir SMS linkinə klik və ya kampaniyaya qoşulma zamanı aktivləşir.",
+        suspicious: true,
+        serviceId: "SND-00142",
       },
       {
         id: "sub-data-addon",
@@ -35,6 +39,7 @@ export function initialBillState(): BillState {
         period: "monthly",
         status: "active",
         description: "İstifadəçinin özü aktivləşdirdiyi əlavə data paketi.",
+        serviceId: "DTA-00087",
       },
     ],
   };
