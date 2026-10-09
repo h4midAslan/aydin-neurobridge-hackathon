@@ -307,7 +307,7 @@ export default function AydinConsole() {
   const handleSend = () => onSend(input);
   const stopCharge = (sub: Subscription) => {
     setTab("chat");
-    onSend(`Bəli, ${sub.name} xidmətini ləğv et və tutulan pulu da geri qaytar.`);
+    onSend(`Bəli, ${sub.name} xidmətini ləğv et və son 7 gün üçün tutulan pulu da geri qaytar.`);
   };
 
   const flaggedSub = bill.subscriptions.find((s) => s.suspicious);
@@ -449,7 +449,7 @@ export default function AydinConsole() {
               <div className="mb-3 flex flex-wrap gap-2 transition duration-500 starting:translate-y-1 starting:opacity-0">
                 <button
                   type="button"
-                  onClick={() => onSend("Bəli, bunu həll et")}
+                  onClick={() => onSend("Bəli, bunu ləğv et və son 7 gün üçün tutulan pulu da geri qaytar")}
                   className="min-h-11 rounded-full bg-[#f5b73a] px-5 text-base font-bold text-black transition hover:bg-[#ffc757] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 >
                   Bəli, bunu həll et
