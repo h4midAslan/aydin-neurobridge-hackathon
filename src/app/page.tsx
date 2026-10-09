@@ -33,7 +33,14 @@ export default function Home() {
       const data = await res.json();
 
       if (data.error) {
-        setMessages((m) => [...m, { role: "assistant", text: "Xəta: " + data.error }]);
+        console.error(data.error);
+        setMessages((m) => [
+          ...m,
+          {
+            role: "assistant",
+            text: "Üzr istəyirəm, bunu indi həll edə bilmədim. Zəhmət olmasa bir daha cəhd edin.",
+          },
+        ]);
       } else {
         setApiHistory(data.history);
         setBill(data.bill);
