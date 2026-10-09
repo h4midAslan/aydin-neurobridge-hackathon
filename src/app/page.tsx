@@ -188,39 +188,6 @@ export default function LandingPage() {
 
         <hr className="border-t border-[#E2D6F5]" />
 
-        {/* Roadmap */}
-        <section className="py-14 sm:py-16">
-          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight max-w-2xl">
-            Bu, real məhsulun ilk ayıdır, həftəsonu demosu deyil.
-          </h2>
-
-          <div className="mt-12 relative">
-            <div className="h-px bg-[#E2D6F5] w-full" />
-            <div className="absolute left-0 -top-[3px] size-2 rounded-full bg-[#5C2D91]" />
-            <div className="absolute right-0 -top-[3px] size-2 rounded-full bg-[#5C2D91]" />
-          </div>
-
-          <div className="mt-6 grid sm:grid-cols-2 gap-8">
-            <div>
-              <div className="text-sm font-bold text-[#5C2D91]">Ay 1</div>
-              <div className="mt-2 font-bold">İndiki vəziyyət</div>
-              <p className="mt-1 text-sm text-[#6E6680] leading-relaxed">
-                Ödəniş ixtilaflarının aşkarlanması, izahı və həlli.
-              </p>
-            </div>
-            <div className="sm:text-right">
-              <div className="text-sm font-bold text-[#5C2D91]">Ay 12</div>
-              <div className="mt-2 font-bold">Tam vizyon</div>
-              <p className="mt-1 text-sm text-[#6E6680] leading-relaxed">
-                Real mühasibatlıq/billinq sistemlərinə bağlantı, daha geniş fırıldaqçılıq
-                aşkarlığı, provayderlərlə danışıqlar.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <hr className="border-t border-[#E2D6F5]" />
-
         {/* Footer */}
         <footer className="py-8 flex flex-wrap items-center justify-between gap-3 text-sm text-[#6E6680]">
           <div className="flex flex-wrap gap-5">
