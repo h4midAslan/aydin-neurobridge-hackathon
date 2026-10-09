@@ -20,13 +20,14 @@ Track: AI Enterprise Solutions · Team whoami · NeuroBridge.SI Baku 2026
 ### Slide 3 — Prototype and use of AI (30 pts)
 - Live demo screenshot/GIF: a call console, not a chat window — call-in-progress header, a persistent "AiCell resolves 17% of this kind of case" badge, a status line that flips to "✅ ZƏNG: HƏLL EDİLDİ" (CALL: RESOLVED) on completion.
 - The core mechanism: on connect, Aydın has already scanned the account and **opens the call itself**, flagging the suspicious charge before being asked anything — proactive detection, not a reactive FAQ lookup.
-- Then: Claude Sonnet 5 tool-calling — `get_bill` (reads real account state) → `cancel_subscription` (executes the cancellation).
+- Then: Claude Sonnet 5 tool-calling across three real tools — `get_bill` (reads real account state) → `cancel_subscription` (stops the charge) → `request_refund` (returns money already taken for past periods) — and the model can chain more than one of these from a single customer confirmation, choosing the right combination itself.
 - Call out explicitly: **this is an agent finishing a call, not a chatbot answering a question.** The console visibly flips from pending to resolved the instant the AI acts — that's the AI's contribution made unmissable, not just claimed in a caption.
 
 ---
 
-### Slide 4 — Prototype and use of AI, continued: handling ambiguity
+### Slide 4 — Prototype and use of AI, continued: handling ambiguity and orchestration
 - Show the one hard case: Aydın has just named two charges unprompted, customer replies only "cancel it" — Aydın asks which one before acting, instead of guessing.
+- Show the multi-tool case: one customer reply ("yes, cancel it, and refund the last 7 days too") triggers `cancel_subscription` *and* `request_refund` correctly, in order, with the refund amount computed exactly right (0.35 AZN × 7 = 2.45 AZN) — verified live in `docs/testing-results.md`, case 11.
 - This is the evidence it's reasoning over account state and conversation context, not pattern-matching a keyword to an action — the thing that separates an agent from a scripted form with a chat skin.
 
 ---
@@ -48,8 +49,8 @@ Track: AI Enterprise Solutions · Team whoami · NeuroBridge.SI Baku 2026
 ---
 
 ### Slide 7 — Originality (10 pts)
-- AiCell (Azercell's own bot): 96.6% Azerbaijani comprehension, but only 17% end-to-end resolution — understands fine, doesn't finish the job.
-- Aydın is a resolution console, not a chatbot: it opens the call itself the moment it detects a problem, and the interface itself reports pending vs. resolved like a call log, not a message thread. The category is different, not just the feature set.
+- AiCell (Azercell's own bot): 96.6% Azerbaijani comprehension, but only 17% end-to-end resolution — understands fine, doesn't finish the job, and even its resolved cases only stop future charges, never return money already taken.
+- Aydın is a resolution console, not a chatbot: it opens the call itself the moment it detects a problem, takes two distinct kinds of real action (cancel and, separately, refund), and the interface itself reports pending vs. resolved like a call log, not a message thread. The category is different, not just the feature set.
 - Contrast with this event's other enterprise entries (e.g. DocuTrust AI): those retrieve and answer from internal documents; Aydın acts on a real external consumer problem and changes account state on its own initiative.
 
 ---

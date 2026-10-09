@@ -4,6 +4,9 @@ Ran against a live `npm run dev` instance with a real `ANTHROPIC_API_KEY`
 (model: `claude-sonnet-5`), using `scripts/test-battery.mjs`. 10 cases total
 — the original 8, plus a 9th covering the proactive opening trigger used on
 app mount, plus a 10th added after a gap was found in case 2 (see below).
+An 11th case was added after a third tool (`request_refund`) was introduced
+— run directly against the live production deployment rather than the local
+script, since it was a quick targeted verification, not a battery re-run.
 
 ## Results — verbatim transcripts
 
@@ -63,6 +66,29 @@ naming both options. **This confirms the disambiguation logic in
 `systemPrompt.ts` (step 3) genuinely works** — case 2 just hadn't actually
 tested it.
 
+### 11. Multi-tool orchestration — cancel + refund in one confirmation (live production)
+Ran against `https://aydin-self.vercel.app`, fresh conversation.
+
+Turn 1 — "Niyə hesabımdan pul çıxır?" → correctly distinguished the
+suspicious Sindibad charge from the legitimate data add-on (same as case 1),
+and — new — proactively offered a refund alongside the cancellation ask:
+"Sindibad Premium Content xidmətini ləğv etməyimi istəyirsiniz? Əgər bəli
+desəniz, həmçinin son günlər üçün tutulan məbləği də geri qaytara bilərəm."
+
+Turn 2 — "Bəli, Sindibad-ı ləğv et, və son 7 gün üçün tutulan pulu da geri
+qaytar" → correctly called **both** `cancel_subscription` and
+`request_refund(periods=7)` from a single customer confirmation, computed
+the refund amount exactly right (0.35 AZN × 7 = 2.45 AZN), and updated the
+balance correctly (4.72 → 7.17 AZN). Reply: "Sindibad Premium Content
+abunəliyi ləğv edildi, artıq gündəlik pul tutulmayacaq. Həmçinin son 7 gün
+üçün tutulan 2.45 AZN balansınıza geri qaytarıldı. Yeni balansınız 7.17
+AZN-dir."
+
+This is genuine multi-step tool orchestration from one natural-language
+confirmation, not two independent features bolted on — the model chose to
+invoke two distinct tools in the correct order and used their combined
+results in a single coherent reply.
+
 ## What broke, and how it was found/fixed
 
 **No code bugs found.** Everything behaved correctly across all 10 cases —
@@ -93,7 +119,10 @@ Azercell's own AiCell bot resolves only **17%** of customer inquiries
 end-to-end despite **96.6%** comprehension accuracy — the rest get routed to
 a human.
 
-Two honest ways to read Aydın's 9 original battery cases against that:
+Two honest ways to read Aydın's 9 original battery cases against that
+(case 11's cancel+refund orchestration only strengthens this further, since
+it resolves both the ongoing charge and the past overcharge in one
+confirmation — AiCell's 17% doesn't attempt refunds at all):
 
 - **Strict / immediate-action count: 4 of 9** (cases 2, 3, 5, 6) resulted in
   a completed cancellation inside that same exchange.

@@ -25,7 +25,9 @@ ilə üst-üstə düşür — fərqli rəqəm demək olmaz.
 - Həll anı (status "HƏLL EDİLDİ"yə keçəndə):
   > Təsdiq edirəm — və budur, zəng statusu dərhal "HƏLL EDİLDİ"yə keçir.
   > Bu real bir hərəkətdir: sistemimiz indicə bu abunəliyi həqiqətən
-  > ləğv etdi, mən sadəcə izah etmədim.
+  > ləğv etdi, mən sadəcə izah etmədim. Və bir addım da var — Aydın həm
+  > də son günlər üçün tutulan pulu geri qaytarmağı özü təklif edir.
+  > AiCell gələcək tutumu dayandırır, Aydın keçmiş pulu da qaytarır.
 
 ## Rəqəmlər (~20-30 san)
 
