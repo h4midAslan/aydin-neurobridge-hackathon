@@ -18,6 +18,14 @@ The only required environment variable is `ANTHROPIC_API_KEY` (Claude Messages A
 
 The assistant reads a mock bill via a `get_bill` tool call, explains any suspicious recurring third-party charge in plain Azerbaijani, and — once the user confirms — calls `cancel_subscription` to actually cancel it. If more than one active subscription exists and the request is ambiguous, it asks which one before acting.
 
+## Disclosure (mandatory, NeuroBridge.SI rules Section 5)
+
+- **Models:** Claude Sonnet 5 (Anthropic Messages API) for the assistant; Claude Code as the AI coding assistant used to build this project.
+- **Data:** synthetic mock bill fixtures only (`src/lib/mockBill.ts`) — no real customer data. Azercell's public AiCell statistics (96.6% comprehension / 17% resolution) are cited as motivation/benchmark in the pitch, not consumed by the app.
+- **Components:** Next.js 16 + React 19 + TypeScript, Tailwind CSS v4, scaffolded via the public `create-next-app` template, deployed on Vercel. No other third-party AI libraries or SDKs — the Anthropic API is called directly over HTTP.
+
+Full breakdown: [`docs/disclosure.md`](docs/disclosure.md).
+
 ---
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
