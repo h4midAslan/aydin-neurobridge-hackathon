@@ -48,8 +48,11 @@ export default function LandingPage() {
 
       <div className="max-w-5xl mx-auto px-6">
         {/* Hero */}
-        <header className="pt-10 pb-2">
+        <header className="pt-10 pb-2 flex items-center justify-between">
           <span className="text-xl font-extrabold tracking-tight">Aydın</span>
+          <Link href="/paketler" className="text-sm text-[#8a9096] hover:text-white transition-colors">
+            Tariflər
+          </Link>
         </header>
 
         <section className="py-10 sm:py-16 grid sm:grid-cols-2 gap-10 items-center">

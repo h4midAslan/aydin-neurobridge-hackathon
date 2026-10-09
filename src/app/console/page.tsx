@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { initialBillState, type BillState, type Subscription } from "@/lib/mockBill";
 
 type ChatMessage = {
@@ -337,10 +338,18 @@ export default function AydinConsole() {
                 <p className="mt-1 truncate text-sm text-[#8a9096]" aria-live="polite">{status}</p>
               </div>
             </div>
-            <p className="shrink-0 text-sm tabular-nums text-[#8a9096]">
-              {resolved ? "Həll olundu — " : ""}
-              <span className="font-bold text-white">{mmss(elapsed)}</span>
-            </p>
+            <div className="flex items-center gap-3 shrink-0">
+              <p className="text-sm tabular-nums text-[#8a9096]">
+                {resolved ? "Həll olundu — " : ""}
+                <span className="font-bold text-white">{mmss(elapsed)}</span>
+              </p>
+              <Link
+                href="/paketler"
+                className="rounded-full border border-[#2f3336] px-3 py-1.5 text-xs font-bold text-[#8a9096] transition hover:border-[#f5b73a] hover:text-[#f5b73a]"
+              >
+                Tariflər
+              </Link>
+            </div>
           </header>
 
           {resolved && flaggedSub && (
